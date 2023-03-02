@@ -16,7 +16,7 @@ jobs:
       - name: "Merge pull request"
         uses: "actions/github-script@v6"
         with:
-          github-token: ${{secrets.TOKEN}}
+          github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const query = `query($owner:String!, $name:String!) {
               repository(owner: $owner, name: $name) {
