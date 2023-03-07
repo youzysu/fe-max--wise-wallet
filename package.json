@@ -1,0 +1,24 @@
+{
+  "name": "01-wise-wallet",
+  "version": "1.0.0",
+  "description": "## 프로젝트 소개",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youzysu/fe-max--wise-wallet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/youzysu/fe-max--wise-wallet/issues"
+  },
+  "homepage": "https://github.com/youzysu/fe-max--wise-wallet#readme",
+  "devDependencies": {
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "^8.7.0",
+    "prettier": "^2.8.4"
+  }
+}
