@@ -1,0 +1,120 @@
+/* Theme */
+:root {
+  /* font-family */
+  --font-family-display: 'Outfit';
+  --font-family-body: 'Pretendard';
+  --font-family-bold: 'Pretendard';
+
+  /* font-size */
+  --font-size-display-small: 24px;
+  --font-size-display-large: 48px;
+
+  --font-size-body-regular: 16px;
+  --font-size-body-medium: 18px;
+  --font-size-body-large: 22px;
+
+  --font-size-bold-regular: 12px;
+  --font-size-bold-medium: 14px;
+  --font-size-bold-large: 16px;
+
+  /* font-weight */
+  --font-weight-display-small: 400;
+  --font-weight-display-large: 700;
+  --font-weight-body: 500;
+  --font-weight-bold: 700;
+
+  /* line-height */
+  --line-height-display-small: 24px;
+  --line-height-display-large: 56px;
+
+  --line-height-body-regular: 24px;
+  --line-height-body-medium: 24px;
+  --line-height-body-large: 32px;
+
+  --line-height-bold-regular: 16px;
+  --line-height-bold-medium: 24px;
+  --line-height-bold-large: 24px;
+
+  /* color */
+  --color-off-white: #f7f6f3;
+  --color-white: #fcfcfc;
+  --color-primary: #524d90;
+  --color-primary-alt: #a79fcb;
+  --color-primary-alt-40: rgba(167, 159, 203, 0.4);
+  --color-secondary-red: #e75b3f;
+  --color-secondary-yellow: #f5b853;
+  --color-secondary-cyan: #4eaaba;
+  --color-category-sky: #6ed5eb;
+  --color-category-cyan: #4cb8b8;
+  --color-category-mint: #94d3cc;
+  --color-category-blue: #4ca1de;
+  --color-category-pink: #d092e2;
+  --color-category-purple: #817dce;
+  --color-category-navy: #4a6cc3;
+  --color-category-green: #b9d58c;
+  --color-category-yellow: #e6d267;
+  --color-category-orange: #e2b765;
+}
+
+.display,
+.body,
+.bold {
+  text-decoration: none;
+}
+
+.display {
+  color: var(--color-white);
+  font-family: var(--font-family-display);
+}
+
+.display--small {
+  font-weight: var(--font-weight-display-small);
+  font-size: var(--font-size-display-small);
+  line-height: var(--line-height-display-small);
+}
+
+.display--large {
+  font-weight: var(--font-weight-display-large);
+  font-size: var(--font-size-display-large);
+  line-height: var(--line-height-display-large);
+}
+
+.body {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-body);
+}
+
+.body--regular {
+  font-size: var(--font-size-body-regular);
+  line-height: var(--line-height-body-regular);
+}
+
+.body--medium {
+  font-size: var(--font-size-body-medium);
+  line-height: var(--line-height-body-medium);
+}
+
+.body--large {
+  font-size: var(--font-size-body-large);
+  line-height: var(--line-height-body-large);
+}
+
+.bold {
+  font-family: var(--font-family-bold);
+  font-weight: var(--font-weight-bold);
+}
+
+.bold--regular {
+  font-size: var(--font-size-bold-regular);
+  line-height: var(--line-height-bold-regular);
+}
+
+.bold--medium {
+  font-size: var(--font-size-bold-medium);
+  line-height: var(--line-height-bold-medium);
+}
+
+.bold--large {
+  font-size: var(--font-size-bold-large);
+  line-height: var(--line-height-bold-large);
+}
