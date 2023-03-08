@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wise Wallet - main</title>
+    <link rel="stylesheet" href="./src/css/reset.css" />
+    <link rel="stylesheet" href="./src/css/theme.css" />
+    <link rel="stylesheet" href="./src/css/common.css" />
+    <link rel="stylesheet" href="./src/css/components/header.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header__inner">
+        <h1 id="logo" class="display-small">
+          <a href="/">
+            <span>Wise</span>
+            <span>Wallet</span>
+          </a>
+        </h1>
+
+        <div class="month-year__carousel">
+          <button type="button">
+            <img
+              src="./src/assets/icon/chevron-left.svg"
+              alt="previous month" />
+          </button>
+          <div class="month-year__content">
+            <p class="year bold-small">2023</p>
+            <p class="month-number display-large">2</p>
+            <p class="month-char bold-small">February</p>
+          </div>
+          <button type="button">
+            <img src="./src/assets/icon/chevron-right.svg" alt="next month" />
+          </button>
+        </div>
+
+        <nav id="tab">
+          <h2 class="sr-only">페이지 탭</h2>
+          <ul>
+            <li>
+              <a href=""
+                ><img src="./src/assets/icon/doc.svg" alt="main page"
+              /></a>
+            </li>
+            <li>
+              <a href=""
+                ><img src="./src/assets/icon/calendar.svg" alt="calendar page"
+              /></a>
+            </li>
+            <li>
+              <a href=""
+                ><img src="./src/assets/icon/chart.svg" alt="chart page"
+              /></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 새로운 내역 입력 영역 -->
+    <section></section>
+
+    <!-- 수입지출 내역 목록 -->
+    <main></main>
+
+    <footer></footer>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
