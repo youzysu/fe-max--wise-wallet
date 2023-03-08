@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
+
 /* Theme */
 :root {
   /* font-family */
@@ -9,11 +12,11 @@
   --font-size-display-small: 24px;
   --font-size-display-large: 48px;
 
-  --font-size-body-regular: 16px;
+  --font-size-body-small: 16px;
   --font-size-body-medium: 18px;
   --font-size-body-large: 22px;
 
-  --font-size-bold-regular: 12px;
+  --font-size-bold-small: 12px;
   --font-size-bold-medium: 14px;
   --font-size-bold-large: 16px;
 
@@ -27,11 +30,11 @@
   --line-height-display-small: 24px;
   --line-height-display-large: 56px;
 
-  --line-height-body-regular: 24px;
+  --line-height-body-small: 24px;
   --line-height-body-medium: 24px;
   --line-height-body-large: 32px;
 
-  --line-height-bold-regular: 16px;
+  --line-height-bold-small: 16px;
   --line-height-bold-medium: 24px;
   --line-height-bold-large: 24px;
 
@@ -56,65 +59,66 @@
   --color-category-orange: #e2b765;
 }
 
-.display,
-.body,
-.bold {
-  text-decoration: none;
-}
-
-.display {
-  color: var(--color-white);
+.display-small {
   font-family: var(--font-family-display);
-}
-
-.display--small {
+  font-style: normal;
   font-weight: var(--font-weight-display-small);
   font-size: var(--font-size-display-small);
   line-height: var(--line-height-display-small);
 }
 
-.display--large {
+.display-large {
+  font-family: var(--font-family-display);
+  font-style: normal;
   font-weight: var(--font-weight-display-large);
   font-size: var(--font-size-display-large);
   line-height: var(--line-height-display-large);
 }
 
-.body {
+.body-small {
   font-family: var(--font-family-body);
+  font-style: normal;
   font-weight: var(--font-weight-body);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
 }
 
-.body--regular {
-  font-size: var(--font-size-body-regular);
-  line-height: var(--line-height-body-regular);
-}
-
-.body--medium {
+.body-medium {
+  font-family: var(--font-family-body);
+  font-style: normal;
+  font-weight: var(--font-weight-body);
   font-size: var(--font-size-body-medium);
   line-height: var(--line-height-body-medium);
 }
 
-.body--large {
+.body-large {
+  font-family: var(--font-family-body);
+  font-style: normal;
+  font-weight: var(--font-weight-body);
   font-size: var(--font-size-body-large);
   line-height: var(--line-height-body-large);
 }
 
-.bold {
+.bold-small {
   font-family: var(--font-family-bold);
+  font-style: normal;
   font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-bold-small);
+  line-height: var(--line-height-bold-small);
 }
 
-.bold--regular {
-  font-size: var(--font-size-bold-regular);
-  line-height: var(--line-height-bold-regular);
-}
-
-.bold--medium {
+.bold-medium {
+  font-family: var(--font-family-bold);
+  font-style: normal;
+  font-weight: var(--font-weight-bold);
   font-size: var(--font-size-bold-medium);
   line-height: var(--line-height-bold-medium);
 }
 
-.bold--large {
+.bold-large {
+  font-family: var(--font-family-bold);
+  font-style: normal;
+  font-weight: var(--font-weight-bold);
   font-size: var(--font-size-bold-large);
   line-height: var(--line-height-bold-large);
 }
