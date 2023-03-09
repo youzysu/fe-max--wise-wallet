@@ -2,7 +2,7 @@
   height: 194px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top: 40px;
   background-color: var(--color-primary);
 }
 
@@ -31,9 +31,6 @@
 .month-year__carousel button {
   width: 32px;
   height: 32px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
 }
 
 .month-year__content {
