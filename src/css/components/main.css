@@ -11,15 +11,18 @@ main {
   top: -2rem;
   width: 894px;
   height: 76px;
-  margin: auto;
   display: flex;
-  align-items: center;
   background-color: var(--color-white);
   border: 1px solid var(--color-primary);
   border-radius: 8px;
 }
 
-#input-bar > div {
+.input-bar__form {
+  display: flex;
+  align-items: center;
+}
+
+.input-bar__form > div {
   padding: 0 24px;
   border-right: 1px solid var(--color-primary);
 }
@@ -31,21 +34,16 @@ main {
   justify-content: space-between;
 }
 
-#input-bar input {
-  height: 24px;
-}
-
-#input-bar > div:nth-child(5) {
+.input-bar__component:nth-child(5) {
   border: none;
   padding-right: 24px;
 }
 
-#submit-btn {
-  width: 40px;
-  height: 40px;
+.input-bar__component input {
+  height: 24px;
 }
 
-#input-bar label {
+.input-bar__component label {
   height: 16px;
   color: var(--color-primary-alt);
 }
@@ -60,7 +58,7 @@ main {
   text-align: right;
 }
 
-#content-input {
+#memo-input {
   width: 164px;
 }
 
@@ -93,11 +91,8 @@ main {
   background-position-y: 40%;
 }
 
-.input-bar__inner > ul {
+.payment-dropdown,
+.category-dropdown {
   position: absolute;
   top: 120%;
-}
-
-.income-category {
-  visibility: hidden;
 }

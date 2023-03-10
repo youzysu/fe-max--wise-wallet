@@ -61,74 +61,88 @@
     <main>
       <!-- 새로운 내역 입력 영역 -->
       <section id="input-bar" class="body-regular">
-        <div class="input-bar__component">
-          <label class="bold-small" for="date-input">일자</label>
-          <input type="text" name="date" id="date-input" />
-        </div>
-        <div class="input-bar__component">
-          <label class="bold-small" for="amount-input">금액</label>
-          <div class="input-money-content">
-            <button id="toggle-btn" type="button">
-              <img src="./src/assets/icon/minus.svg" alt="minus" />
-            </button>
+        <form class="input-bar__form" action="">
+          <div class="input-bar__component">
+            <label class="bold-small" for="date-input">일자</label>
+            <input type="text" name="date" id="date-input" />
+          </div>
+
+          <div class="input-bar__component">
+            <label class="bold-small" for="amount-input">금액</label>
+            <div class="input-money-content">
+              <button id="toggle-btn" type="button">
+                <img src="./src/assets/icon/minus.svg" alt="minus" />
+              </button>
+              <input
+                type="text"
+                name="amount"
+                placeholder="0"
+                id="amount-input"
+                required />
+              <span class="body-small">원</span>
+            </div>
+          </div>
+
+          <div class="input-bar__component">
+            <label class="bold-small" for="content-input">내용</label>
             <input
               type="text"
-              name="amount"
-              placeholder="0"
-              id="amount-input"
-              required />
-            <span class="body-small">원</span>
+              name="memo"
+              placeholder="입력하세요"
+              class="body-small"
+              id="memo-input" />
           </div>
-        </div>
-        <div class="input-bar__component">
-          <label class="bold-small" for="content-input">내용</label>
-          <input
-            type="text"
-            name="content"
-            placeholder="입력하세요"
-            class="body-small"
-            id="content-input" />
-        </div>
-        <div class="input-bar__inner">
+
           <div class="input-bar__component">
             <label class="bold-small" for="payment">결제수단</label>
             <button id="payment">
               <span class="body-small">선택하세요</span>
             </button>
+            <div class="payment-dropdown">
+              <ul class="payment-list">
+                <li><span>현금</span><button class="delete-btn"></button></li>
+                <li>
+                  <span>신용카드</span><button class="delete-btn"></button>
+                </li>
+                <li><span>추가하기</span></li>
+              </ul>
+            </div>
           </div>
-          <ul class="payment-list">
-            <li><span>현금</span><button class="delete-btn"></button></li>
-            <li><span>신용카드</span><button class="delete-btn"></button></li>
-            <li><span>추가하기</span></li>
-          </ul>
-        </div>
-        <div class="input-bar__inner">
+
           <div class="input-bar__component">
             <label class="bold-small" for="category">분류</label>
             <button id="category">
               <span class="body-small">선택하세요</span>
             </button>
+            <div class="category-dropdown">
+              <ul class="expenditure-category">
+                <li><span>생활</span></li>
+                <li><span>식비</span></li>
+                <li><span>교통</span></li>
+                <li><span>쇼핑/뷰티</span></li>
+                <li><span>의료/건강</span></li>
+                <li><span>문화/여가</span></li>
+                <li><span>미분류</span></li>
+              </ul>
+              <ul class="income-category">
+                <li><span>월급</span></li>
+                <li><span>용돈</span></li>
+                <li><span>기타 수입</span></li>
+              </ul>
+            </div>
           </div>
-          <ul class="expenditure-category">
-            <li><span>생활</span></li>
-            <li><span>식비</span></li>
-            <li><span>교통</span></li>
-            <li><span>쇼핑/뷰티</span></li>
-            <li><span>의료/건강</span></li>
-            <li><span>문화/여가</span></li>
-            <li><span>미분류</span></li>
-          </ul>
-          <ul class="income-category">
-            <li><span>월급</span></li>
-            <li><span>용돈</span></li>
-            <li><span>기타 수입</span></li>
-          </ul>
-        </div>
-        <button id="submit-btn" type="button" disabled onclick="">
-          <img
-            src="./src/assets/icon/button-disabled.svg"
-            alt="submit button" />
-        </button>
+
+          <button
+            class="input-bar__component"
+            id="submit-btn"
+            type="button"
+            disabled
+            onclick="">
+            <img
+              src="./src/assets/icon/button-disabled.svg"
+              alt="submit button" />
+          </button>
+        </form>
       </section>
 
       <!-- 수입지출 내역 목록 -->
