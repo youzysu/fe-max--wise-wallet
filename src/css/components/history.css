@@ -98,9 +98,20 @@
   width: 234px;
   display: flex;
   justify-content: flex-end;
-}
-
-.daily-item__price {
+  align-items: center;
   color: var(--color-secondary-red);
   color: var(--color-secondary-cyan);
+}
+
+.daily-item .daily-item__delete-btn {
+  display: none;
+  padding-left: 16px;
+}
+
+.daily-item:hover .daily-item__delete-btn {
+  display: initial;
+}
+
+.daily-item:hover {
+  background-color: var(--color-white);
 }
