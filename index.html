@@ -168,15 +168,15 @@
           <div class="total-info__left body-large">
             <span>전체 내역 </span><span>13</span><span>건</span>
           </div>
-          <form action="" class="total-info__right body-medium">
-            <fieldset>
+          <form action="" class="total-info__right">
+            <fieldset class="body-medium">
               <input
                 type="checkbox"
                 name="total-income"
                 id="total-income"
                 checked />
               <label for="total-income"
-                ><span>수입 </span><span>2010580</span></label
+                ><span>수입 </span><span>2,010,580</span></label
               >
               <input
                 type="checkbox"
@@ -184,27 +184,36 @@
                 id="total-expenditure"
                 checked />
               <label for="total-expenditure"
-                ><span>지출 </span><span>798180</span></label
+                ><span>지출 </span><span>798,180</span></label
               >
             </fieldset>
           </form>
         </div>
 
         <ul class="daily-history">
-          <div class="daily-info">
-            <div class="date"><span>2월 15일</span><span>수</span></div>
+          <div class="daily-info bold-medium">
+            <div class="daily-info__date">
+              <span class="daily-info__dateChar">2월 15일</span
+              ><span class="daily-info__day">수</span>
+            </div>
             <div class="daily-total">
               <span>수입</span>
-              <span>2010580<span>원</span></span>
+              <span>2,010,580<span>원</span></span>
               <span>지출</span>
-              <span>9500<span>원</span></span>
+              <span>9,500<span>원</span></span>
             </div>
           </div>
           <li class="daily-item">
-            <div class="daily-item__category"><span>문화/여가</span></div>
-            <span class="daily-item__body">스트리밍 서비스 정기 결제</span>
-            <span class="daily-item__payment">현대카드</span>
-            <span class="daily-item__price">10,900<span>원</span></span>
+            <div class="daily-item__category">
+              <span class="bold-medium">문화/여가</span>
+            </div>
+            <span class="daily-item__body body-medium"
+              >스트리밍 서비스 정기 결제</span
+            >
+            <span class="daily-item__payment body-medium">현대카드</span>
+            <span class="daily-item__price body-medium"
+              >10,900<span>원</span></span
+            >
           </li>
         </ul>
       </section>

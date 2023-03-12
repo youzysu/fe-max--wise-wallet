@@ -32,7 +32,6 @@ button {
 input {
   padding: 0;
   border: none;
-  width: 100%;
   display: flex;
 }
 
@@ -42,4 +41,8 @@ input:focus {
 
 input::placeholder {
   color: var(--color-primary-alt);
+}
+
+input[type='checkbox'] {
+  display: none;
 }
