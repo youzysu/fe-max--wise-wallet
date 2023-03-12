@@ -57,6 +57,22 @@
   --color-category-green: #b9d58c;
   --color-category-yellow: #e6d267;
   --color-category-orange: #e2b765;
+
+  /* filter */
+  --filter-white: brightness(0) saturate(100%) invert(100%) sepia(0%)
+    saturate(0%) hue-rotate(95deg) brightness(104%) contrast(98%);
+  --filter-primary-alt: brightness(0) saturate(100%) invert(70%) sepia(25%)
+    saturate(373%) hue-rotate(211deg) brightness(90%) contrast(86%);
+  --filter-secondary-red: brightness(0) saturate(100%) invert(50%) sepia(33%)
+    saturate(3959%) hue-rotate(335deg) brightness(93%) contrast(94%);
+
+  /* shadow */
+  --shadow: 0px 2px 2px var(--color-primary-8),
+    0px 4px 4px var(--color-primary-10);
+
+  /* component */
+  --radius-primary: 8px;
+  --radius-secondary: 50%;
 }
 
 .display-small {
