@@ -1,0 +1,136 @@
+#input-bar {
+  position: absolute;
+  top: -2rem;
+  width: 894px;
+  height: 76px;
+  display: flex;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-primary);
+}
+
+.input-bar__form {
+  display: flex;
+  align-items: center;
+}
+
+.input-bar__form > div {
+  border-right: 1px solid var(--color-primary);
+}
+
+.input-bar__component {
+  position: relative;
+}
+
+.payment-dropdown,
+.category-dropdown {
+  position: absolute;
+  top: 150%;
+  left: 0%;
+}
+
+.input-bar__component:not(:last-child) {
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.input-bar__component:nth-child(5) {
+  border: none;
+}
+
+.input-bar__component input {
+  height: 24px;
+}
+
+.input-bar__component > label {
+  height: 16px;
+  color: var(--color-primary-alt);
+}
+
+#date-input {
+  width: 88px;
+  color: var(--color-primary);
+}
+
+#amount-input {
+  width: 78px;
+  text-align: right;
+}
+
+#memo-input {
+  width: 164px;
+}
+
+#toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.input-money-content {
+  width: 134px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-money-content > span {
+  color: var(--color-primary);
+}
+
+.dropdown-input {
+  width: 100px;
+  text-align: left;
+  color: var(--color-primary-alt);
+  background-image: url('/src/assets/icon/chevron-down.svg');
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 40%;
+  cursor: pointer;
+}
+
+.income-category,
+.expenditure-category,
+.payment-list {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-primary);
+  display: none;
+}
+
+.option {
+  display: flex;
+  position: relative;
+  padding: 0 24px;
+  justify-content: space-between;
+  width: 148px;
+  height: 57px;
+}
+
+.option > span {
+  display: flex;
+  align-items: center;
+}
+
+.option:not(:last-child)::after,
+.option:not(:last-child)::after,
+.option:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  width: 100px;
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.input-bar__dropdown.active {
+}
+
+.delete-btn > img {
+  filter: var(--filter-secondary-red);
+}
