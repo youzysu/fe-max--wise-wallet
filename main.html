@@ -64,21 +64,24 @@
         <form class="input-bar__form" action="">
           <div class="input-bar__component">
             <label class="bold-small" for="date-input">일자</label>
-            <input type="text" name="date" id="date-input" />
+            <input type="text" name="date" id="date-input" pattern="^\d{8}" />
           </div>
 
           <div class="input-bar__component">
             <label class="bold-small" for="amount-input">금액</label>
             <div class="input-money-content">
-              <button id="toggle-btn" type="button">
-                <img src="./src/assets/icon/minus.svg" alt="minus" />
-              </button>
+              <input
+                type="checkbox"
+                name="amount-type-btn"
+                id="amount-type-btn" />
+              <label for="amount-type-btn"></label>
               <input
                 type="text"
                 inputmode="numeric"
                 name="amount"
                 placeholder="0"
                 id="amount-input"
+                pattern="^\d{15}"
                 required />
               <span class="body-small">원</span>
             </div>

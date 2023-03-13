@@ -20,6 +20,7 @@
 
 .input-bar__component {
   position: relative;
+  display: flex;
 }
 
 .payment-dropdown,
@@ -64,12 +65,17 @@
   width: 164px;
 }
 
-#toggle-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#amount-type-btn[type='checkbox'] + label {
   width: 24px;
   height: 24px;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('/src/assets/icon/minus.svg');
+}
+
+#amount-type-btn[type='checkbox']:checked + label {
+  background-image: url('/src/assets/icon/plus.svg');
 }
 
 .input-money-content {
