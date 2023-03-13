@@ -1,11 +1,6 @@
-import { initDateInput } from './components/inputBar.js';
-import { initCurrentDate } from './components/monthYearCarousel.js';
-import { getCurrentTime } from './utils/getCurrentTime.js';
+import { App } from './App.js';
+import { $ } from './utils/dom.js';
 
-const App = () => {
-  const { year, monthNumber, monthChar, date } = getCurrentTime();
-  initCurrentDate({ year, monthNumber, monthChar });
-  initDateInput({ year, monthNumber, date });
-};
-
-App();
+const $App = $('#App');
+const app = new App({ $App });
+app.render();
