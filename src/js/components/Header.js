@@ -3,28 +3,40 @@ import {
   MONTH_YEAR_TEMPLATE,
   NAV_TEMPLATE,
 } from '../templates/header.js';
+import { $ } from '../utils/dom.js';
 
 export class Header {
   constructor($app) {
     this.$app = $app;
+    this.init();
   }
 
-  render() {
+  init() {
     const $header = document.createElement('header');
     $header.setAttribute('class', 'header');
-    this.makeHeaderInner($header);
+
+    const $headerInner = document.createElement('div');
+    $headerInner.setAttribute('class', 'header__inner');
+
+    const $logo = LOGO_TEMPLATE;
+    const $monthYearCarousel = MONTH_YEAR_TEMPLATE;
+    const $navTab = NAV_TEMPLATE;
+
+    $headerInner.innerHTML = `${$logo}${$monthYearCarousel}${$navTab}`;
+
+    $header.appendChild($headerInner);
     this.$app.appendChild($header);
   }
 
-  makeHeaderInner(header) {
-    const div = document.createElement('div');
-    div.setAttribute('class', 'header__inner');
+  initMonthYear({ year, monthNumber, monthChar }) {
+    const $year = $('#year');
+    const $monthNumber = $('#monthNumber');
+    const $monthChar = $('#monthChar');
 
-    const $logo = LOGO_TEMPLATE;
-    const $navTab = NAV_TEMPLATE;
-    const $monthYearCarousel = MONTH_YEAR_TEMPLATE;
-
-    div.innerHTML = `${$logo}${$monthYearCarousel}${$navTab}`;
-    header.appendChild(div);
+    $year.textContent = year;
+    $monthNumber.textContent = monthNumber;
+    $monthChar.textContent = monthChar;
   }
+
+  render() {}
 }
