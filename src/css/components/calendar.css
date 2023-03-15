@@ -1,0 +1,15 @@
+#week-bar {
+  width: 846px;
+  height: 48px;
+  display: flex;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-primary);
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.calendar__day {
+  width: 120px;
+}

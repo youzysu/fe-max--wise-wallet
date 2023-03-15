@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wise Wallet - main</title>
+    <title>Wise Wallet</title>
     <link rel="stylesheet" href="./src/css/style.css" />
   </head>
 
@@ -61,24 +61,25 @@
     <main>
       <!-- 새로운 내역 입력 영역 -->
       <section id="input-bar" class="body-regular">
-        <form class="input-bar__form" action="">
+        <form class="input-bar__form body-small" action="">
           <div class="input-bar__component">
             <label class="bold-small" for="date-input">일자</label>
-            <input type="text" name="date" id="date-input" />
+            <input type="text" name="date" id="date-input" pattern="^\d{8}" />
           </div>
 
           <div class="input-bar__component">
-            <label class="bold-small" for="amount-input">금액</label>
+            <label class="bold-small" for="money-input">금액</label>
             <div class="input-money-content">
-              <button id="toggle-btn" type="button">
-                <img src="./src/assets/icon/minus.svg" alt="minus" />
-              </button>
+              <input
+                type="checkbox"
+                name="money-type-checkbox"
+                id="money-type-checkbox" />
+              <label for="money-type-checkbox"></label>
               <input
                 type="text"
-                inputmode="numeric"
-                name="amount"
+                name="money"
                 placeholder="0"
-                id="amount-input"
+                id="money-input"
                 required />
               <span class="body-small">원</span>
             </div>
@@ -101,9 +102,9 @@
               class="dropdown-input body-small"
               placeholder="선택하세요"
               readonly />
-            <div class="payment-dropdown">
+            <div class="input-bar__dropdown">
               <ul class="payment-list body-small">
-                <li class="option">
+                <li class="input-option">
                   <span>현금</span
                   ><button class="delete-btn">
                     <img
@@ -111,7 +112,7 @@
                       alt="delete button" />
                   </button>
                 </li>
-                <li class="option">
+                <li class="input-option">
                   <span>신용카드</span
                   ><button class="delete-btn">
                     <img
@@ -119,7 +120,7 @@
                       alt="delete button" />
                   </button>
                 </li>
-                <li class="option"><span>추가하기</span></li>
+                <li class="input-option"><span>추가하기</span></li>
               </ul>
             </div>
           </div>
@@ -131,21 +132,16 @@
               class="dropdown-input body-small"
               placeholder="선택하세요"
               readonly />
-            <div class="category-dropdown">
-              <ul class="expenditure-category body-small">
-                <li class="option"><span>생활</span></li>
-                <li class="option"><span>식비</span></li>
-                <li class="option"><span>교통</span></li>
-                <li class="option"><span>쇼핑/뷰티</span></li>
-                <li class="option"><span>의료/건강</span></li>
-                <li class="option"><span>문화/여가</span></li>
-                <li class="option"><span>미분류</span></li>
+            <div class="input-bar__dropdown category-dropdown">
+              <ul class="category-list body-small">
+                <li class="input-option"><span>생활</span></li>
+                <li class="input-option"><span>식비</span></li>
+                <li class="input-option"><span>교통</span></li>
+                <li class="input-option"><span>쇼핑/뷰티</span></li>
+                <li class="input-option"><span>의료/건강</span></li>
+                <li class="input-option"><span>문화/여가</span></li>
+                <li class="input-option"><span>미분류</span></li>
               </ul>
-              <!-- <ul class="income-category body-small">
-                  <li><span>월급</span></li>
-                  <li><span>용돈</span></li>
-                  <li><span>기타 수입</span></li>
-                </ul> -->
             </div>
           </div>
 
@@ -168,15 +164,15 @@
           <div class="total-info__left body-large">
             <span>전체 내역 </span><span>13</span><span>건</span>
           </div>
-          <form action="" class="total-info__right body-medium">
-            <fieldset>
+          <form action="" class="total-info__right">
+            <fieldset class="body-medium">
               <input
                 type="checkbox"
                 name="total-income"
                 id="total-income"
                 checked />
               <label for="total-income"
-                ><span>수입 </span><span>2010580</span></label
+                ><span>수입 </span><span>2,010,580</span></label
               >
               <input
                 type="checkbox"
@@ -184,27 +180,41 @@
                 id="total-expenditure"
                 checked />
               <label for="total-expenditure"
-                ><span>지출 </span><span>798180</span></label
+                ><span>지출 </span><span>798,180</span></label
               >
             </fieldset>
           </form>
         </div>
 
         <ul class="daily-history">
-          <div class="daily-info">
-            <div class="date"><span>2월 15일</span><span>수</span></div>
+          <div class="daily-info bold-medium">
+            <div class="daily-info__date">
+              <span class="daily-info__dateChar">3월 15일</span
+              ><span class="daily-info__day">수</span>
+            </div>
             <div class="daily-total">
               <span>수입</span>
-              <span>2010580<span>원</span></span>
+              <span>2,010,580<span>원</span></span>
               <span>지출</span>
-              <span>9500<span>원</span></span>
+              <span>9,500<span>원</span></span>
             </div>
           </div>
           <li class="daily-item">
-            <div class="daily-item__category"><span>문화/여가</span></div>
-            <span class="daily-item__body">스트리밍 서비스 정기 결제</span>
-            <span class="daily-item__payment">현대카드</span>
-            <span class="daily-item__price">10,900<span>원</span></span>
+            <div class="daily-item__category">
+              <span class="bold-medium">문화/여가</span>
+            </div>
+            <span class="daily-item__body body-medium"
+              >스트리밍 서비스 정기 결제</span
+            >
+            <span class="daily-item__payment body-medium">현대카드</span>
+            <div class="daily-item__price">
+              <span class="body-medium">10,900<span>원</span></span>
+              <button type="button" class="daily-item__delete-btn">
+                <img
+                  src="./src/assets/icon/delete-item-icon.svg"
+                  alt="delete item button" />
+              </button>
+            </div>
           </li>
         </ul>
       </section>

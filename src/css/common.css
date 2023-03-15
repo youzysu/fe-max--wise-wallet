@@ -13,9 +13,9 @@
   box-sizing: border-box;
 }
 
-/* body * {
-  border: 1px solid red;
-} */
+body {
+  background-color: var(--color-off-white);
+}
 
 a {
   color: inherit;
@@ -32,8 +32,9 @@ button {
 input {
   padding: 0;
   border: none;
-  width: 100%;
   display: flex;
+  cursor: pointer;
+  background: transparent;
 }
 
 input:focus {
@@ -42,4 +43,8 @@ input:focus {
 
 input::placeholder {
   color: var(--color-primary-alt);
+}
+
+input[type='checkbox'] {
+  display: none;
 }
