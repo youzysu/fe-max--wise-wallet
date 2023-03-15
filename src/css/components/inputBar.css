@@ -55,11 +55,13 @@
 
 #date-input {
   width: 88px;
+  font-size: var(--font-size-body-small);
   color: var(--color-primary);
 }
 
 #money-input {
   width: 78px;
+  font-size: var(--font-size-body-small);
   text-align: right;
 }
 
@@ -67,7 +69,7 @@
   width: 164px;
 }
 
-#money-type-btn[type='checkbox'] + label {
+#money-type-checkbox[type='checkbox'] + label {
   width: 24px;
   height: 24px;
   cursor: pointer;
@@ -76,7 +78,7 @@
   background-image: url('/src/assets/icon/minus.svg');
 }
 
-#money-type-btn[type='checkbox']:checked + label {
+#money-type-checkbox[type='checkbox']:checked + label {
   background-image: url('/src/assets/icon/plus.svg');
 }
 
@@ -101,9 +103,10 @@
   cursor: pointer;
 }
 
-.income-category,
-.expenditure-category,
+.category-list,
 .payment-list {
+  position: absolute;
+  background-color: var(--color-white);
   display: flex;
   flex-direction: column;
   color: var(--color-primary);
