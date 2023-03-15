@@ -23,9 +23,10 @@
   display: flex;
 }
 
-.payment-dropdown,
-.category-dropdown {
+.input-bar__dropdown {
   position: absolute;
+  display: none;
+  background-color: var(--color-white);
   top: 150%;
   left: 0%;
 }
@@ -44,6 +45,7 @@
 
 .input-bar__component input {
   height: 24px;
+  color: var(--color-primary);
 }
 
 .input-bar__component > label {
@@ -56,7 +58,7 @@
   color: var(--color-primary);
 }
 
-#amount-input {
+#money-input {
   width: 78px;
   text-align: right;
 }
@@ -65,7 +67,7 @@
   width: 164px;
 }
 
-#amount-type-btn[type='checkbox'] + label {
+#money-type-btn[type='checkbox'] + label {
   width: 24px;
   height: 24px;
   cursor: pointer;
@@ -74,7 +76,7 @@
   background-image: url('/src/assets/icon/minus.svg');
 }
 
-#amount-type-btn[type='checkbox']:checked + label {
+#money-type-btn[type='checkbox']:checked + label {
   background-image: url('/src/assets/icon/plus.svg');
 }
 
@@ -107,10 +109,10 @@
   color: var(--color-primary);
   border: 1px solid var(--color-primary);
   border-radius: var(--radius-primary);
-  display: none;
+  cursor: pointer;
 }
 
-.option {
+.input-option {
   display: flex;
   position: relative;
   padding: 0 24px;
@@ -119,14 +121,14 @@
   height: 57px;
 }
 
-.option > span {
+.input-option > span {
   display: flex;
   align-items: center;
 }
 
-.option:not(:last-child)::after,
-.option:not(:last-child)::after,
-.option:not(:last-child)::after {
+.input-option:not(:last-child)::after,
+.input-option:not(:last-child)::after,
+.input-option:not(:last-child)::after {
   content: '';
   position: absolute;
   bottom: 0px;
@@ -135,6 +137,7 @@
 }
 
 .input-bar__dropdown.active {
+  display: initial;
 }
 
 .delete-btn > img {
