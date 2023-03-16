@@ -1,5 +1,11 @@
 import { $, getCurrentDate } from './utils.js';
 
+export const init = () => {
+  const { year, monthNumber, monthChar, date } = getCurrentDate();
+  initCurrentDate({ year, monthNumber, monthChar });
+  initDateInput({ year, monthNumber, date });
+};
+
 const initDateInput = ({ year, monthNumber, date }) => {
   const $dateInput = $('#date-input');
   const month = monthNumber.padStart(2, '0');
@@ -14,10 +20,4 @@ const initCurrentDate = ({ year, monthNumber, monthChar }) => {
   $year.textContent = year;
   $monthNumber.textContent = monthNumber;
   $monthChar.textContent = monthChar;
-};
-
-export const init = () => {
-  const { year, monthNumber, monthChar, date } = getCurrentDate();
-  initCurrentDate({ year, monthNumber, monthChar });
-  initDateInput({ year, monthNumber, date });
 };
