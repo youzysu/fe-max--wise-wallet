@@ -7,23 +7,37 @@ export function InputBar() {
 
   const $paymentInput = $('#payment-input');
   const $categoryInput = $('#category-input');
-  handleDropdownClick($paymentInput);
-  handleDropdownClick($categoryInput);
-  handleOptionClick('.input-bar__dropdown');
+  toggleDropdown($paymentInput);
+  toggleDropdown($categoryInput);
+  changeSelectedOption('.input-bar__dropdown');
 
   const $moneyTypeCheckbox = $('#money-type-checkbox');
   const $categoryDropdown = $('.category-dropdown');
   changeCategoryList($moneyTypeCheckbox, $categoryDropdown);
+
+  const $moneyInput = $('#money-input');
+  formatMoneyValue($moneyInput);
 }
 
-const handleDropdownClick = (element) => {
+const formatMoneyValue = (element) => {
+  element.addEventListener('input', ({ target }) => {
+    let moneyValue = target.value;
+    moneyValue = Number(moneyValue.replaceAll(',', ''));
+    if (isNaN(moneyValue)) return (target.value = '');
+
+    const formatValue = moneyValue.toLocaleString('ko-KR');
+    target.value = formatValue;
+  });
+};
+
+const toggleDropdown = (element) => {
   element.addEventListener('click', ({ target }) => {
     const dropdown = target.nextElementSibling;
     toggleActiveClass(dropdown);
   });
 };
 
-const handleOptionClick = (dropdownClassName) => {
+const changeSelectedOption = (dropdownClassName) => {
   const $dropdowns = $all(dropdownClassName);
 
   $dropdowns.forEach((el) => {
