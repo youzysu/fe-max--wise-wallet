@@ -86,8 +86,6 @@
                 name="money"
                 placeholder="0"
                 id="money-input"
-                pattern="^\d+"
-                title="숫자만 입력해주세요."
                 required />
               <span class="body-small">원</span>
             </div>
@@ -109,6 +107,7 @@
             <input
               id="payment-input"
               class="dropdown-input body-small"
+              name="payment"
               placeholder="선택하세요"
               readonly
               required />
@@ -139,8 +138,10 @@
             <label class="bold-small" for="category-input">분류</label>
             <input
               id="category-input"
+              type="text"
               class="dropdown-input body-small"
               placeholder="선택하세요"
+              name="category"
               readonly
               required />
             <div class="input-bar__dropdown category-dropdown">
@@ -160,12 +161,7 @@
             class="input-bar__component"
             id="submit-btn"
             type="button"
-            disabled
-            onclick="">
-            <img
-              src="./src/assets/icon/button-disabled.svg"
-              alt="submit button" />
-          </button>
+            disabled></button>
         </form>
       </section>
 

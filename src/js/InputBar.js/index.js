@@ -2,29 +2,46 @@ import { $, $all, toggleActiveClass } from '../utils.js';
 import { $expenseCategory, $incomeCategory } from './makeCategory.js';
 
 export function InputBar() {
-  const $inputBarForm = $('.input-bar__form');
-  $inputBarForm.addEventListener('submit', (e) => e.preventDefault());
-
   const $paymentInput = $('#payment-input');
   const $categoryInput = $('#category-input');
   toggleDropdown($paymentInput);
   toggleDropdown($categoryInput);
 
-  changeSelectedOption('.input-bar__dropdown');
+  const DROPDOWN_SELECTOR_NAME = '.input-bar__dropdown';
+  changeSelectedOption(DROPDOWN_SELECTOR_NAME);
 
   const $moneyTypeCheckbox = $('#money-type-checkbox');
   const $categoryDropdown = $('.category-dropdown');
   changeCategoryList($moneyTypeCheckbox, $categoryDropdown);
 
   const $moneyInput = $('#money-input');
-  formatMoneyValue($moneyInput);
+  moneyInputEventHandler($moneyInput);
 
   const $dateInput = $('#date-input');
   validateDateValue($dateInput);
 
-  // const $paymentList = $('.payment-list');
-  // changePaymentOption($paymentList);
+  const $inputBarForm = $('.input-bar__form');
+  const $submitButton = $('#submit-btn');
+
+  $inputBarForm.addEventListener('change', () => {
+    checkUserInputValue($inputBarForm)
+      ? ($submitButton.disabled = false)
+      : ($submitButton.disabled = true);
+  });
+  $inputBarForm.addEventListener('submit', (e) => e.preventDefault());
 }
+
+const checkUserInputValue = (form) => {
+  const inputElements = form.elements;
+  const userInputValues = [
+    inputElements.date.value,
+    inputElements.money.value,
+    inputElements.memo.value,
+    inputElements.payment.value,
+    inputElements.category.value,
+  ];
+  return userInputValues.every((v) => !!v === true);
+};
 
 const validateDateValue = (element) => {
   element.addEventListener('blur', ({ target }) => {
@@ -44,13 +61,17 @@ const changePaymentOption = (element) => {
   });
 };
 
-const formatMoneyValue = (element) => {
-  element.addEventListener('input', ({ target }) => {
-    let moneyValue = target.value;
-    moneyValue = Number(moneyValue.replaceAll(',', ''));
-    if (isNaN(moneyValue)) return (target.value = '');
-    target.value = moneyValue.toLocaleString('ko-KR');
-  });
+const moneyInputEventHandler = (element) => {
+  element.addEventListener('input', ({ target }) =>
+    formatMoneyValue({ target })
+  );
+};
+
+const formatMoneyValue = ({ target }) => {
+  let moneyValue = target.value;
+  moneyValue = Number(moneyValue.replaceAll(',', ''));
+  if (!moneyValue || isNaN(moneyValue)) return (target.value = '');
+  target.value = moneyValue.toLocaleString('ko-KR');
 };
 
 const toggleDropdown = (element) => {
