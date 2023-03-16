@@ -9,6 +9,7 @@ export function InputBar() {
   const $categoryInput = $('#category-input');
   toggleDropdown($paymentInput);
   toggleDropdown($categoryInput);
+
   changeSelectedOption('.input-bar__dropdown');
 
   const $moneyTypeCheckbox = $('#money-type-checkbox');
@@ -17,16 +18,38 @@ export function InputBar() {
 
   const $moneyInput = $('#money-input');
   formatMoneyValue($moneyInput);
+
+  const $dateInput = $('#date-input');
+  validateDateValue($dateInput);
+
+  // const $paymentList = $('.payment-list');
+  // changePaymentOption($paymentList);
 }
+
+const validateDateValue = (element) => {
+  element.addEventListener('blur', ({ target }) => {
+    const dateValue = target.value;
+    if (!/^2\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])/.test(dateValue)) {
+      target.focus();
+    }
+  });
+};
+
+const changePaymentOption = (element) => {
+  element.addEventListener('click', ({ target }) => {
+    if (target.className.contains('delete-btn')) {
+      // 배경 딤처리
+      // 삭제 모달창 띄우기
+    }
+  });
+};
 
 const formatMoneyValue = (element) => {
   element.addEventListener('input', ({ target }) => {
     let moneyValue = target.value;
     moneyValue = Number(moneyValue.replaceAll(',', ''));
     if (isNaN(moneyValue)) return (target.value = '');
-
-    const formatValue = moneyValue.toLocaleString('ko-KR');
-    target.value = formatValue;
+    target.value = moneyValue.toLocaleString('ko-KR');
   });
 };
 
