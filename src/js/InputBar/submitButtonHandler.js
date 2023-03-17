@@ -4,17 +4,20 @@ import { $ } from '../utils.js';
 
 export const submitButtonHandler = () => {
   const $inputBarForm = $(CLASS_SELECTOR.inputBarForm);
+
+  $inputBarForm.addEventListener(EVENT.change, checkSubmitButtonActivation);
+  $inputBarForm.addEventListener(EVENT.submit, (e) => inputSubmitHandler(e));
+};
+
+export const checkSubmitButtonActivation = () => {
+  const $inputBarForm = $(CLASS_SELECTOR.inputBarForm);
   const $submitButton = $(ID_SELECTOR.submitButton);
   const { date, money, memo, payment, category, moneyType } =
     $inputBarForm.elements;
 
-  $inputBarForm.addEventListener(EVENT.change, () => {
-    isAllInputFilled({ date, money, memo, payment, category })
-      ? ($submitButton.disabled = false)
-      : ($submitButton.disabled = true);
-  });
-
-  $inputBarForm.addEventListener(EVENT.submit, (e) => inputSubmitHandler(e));
+  isAllInputFilled({ date, money, memo, payment, category })
+    ? ($submitButton.disabled = false)
+    : ($submitButton.disabled = true);
 };
 
 const inputSubmitHandler = (e) => {
