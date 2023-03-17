@@ -8,6 +8,7 @@ export const CLASS_SELECTOR = {
   inputOption: '.input-option',
   categoryDropdown: '.category-dropdown',
   categoryList: '.category-list',
+  inputBarForm: '.input-bar__form',
 };
 
 export const ID_SELECTOR = {
@@ -16,10 +17,12 @@ export const ID_SELECTOR = {
   moneyCheckbox: '#money-type-checkbox',
   moneyInput: '#money-input',
   dateInput: '#date-input',
+  submitButton: '#submit-btn',
 };
 
 export const EVENT = {
   click: 'click',
   input: 'input',
   blur: 'blur',
+  change: 'change',
 };
