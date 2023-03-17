@@ -25,4 +25,21 @@ export const EVENT = {
   input: 'input',
   blur: 'blur',
   change: 'change',
+  submit: 'submit',
+};
+
+export const EXPENSE_TEXT = [
+  '생활',
+  '식비',
+  '교통',
+  '쇼핑/뷰티',
+  '의료/건강',
+  '문화/여가',
+  '미분류',
+];
+
+export const INCOME_TEXT = ['월급', '용돈', '기타 수입'];
+
+export const REGEX = {
+  dateFormat: /^2\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])/,
 };

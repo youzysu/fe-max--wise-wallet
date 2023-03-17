@@ -1,4 +1,4 @@
-import { InputBar } from './InputBar.js/index.js';
+import { InputBar } from './InputBar/index.js';
 import { init } from './init.js';
 
 function App() {

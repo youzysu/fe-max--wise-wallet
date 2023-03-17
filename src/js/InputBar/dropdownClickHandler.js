@@ -1,13 +1,11 @@
 import { CLASS_SELECTOR, EVENT } from '../constant.js';
-import { $all, toggleActiveClass } from '../utils.js';
+import { toggleActiveClass } from '../utils.js';
 
-export const dropdownClickHandler = () => {
-  const $inputBarDropdowns = $all(CLASS_SELECTOR.inputBarDropdown);
-
-  $inputBarDropdowns.forEach((element) => {
-    element.addEventListener(EVENT.click, ({ target }) => {
+export const dropdownClickHandler = (inputBarDropdowns) => {
+  inputBarDropdowns.forEach((dropdown) => {
+    dropdown.addEventListener(EVENT.click, ({ target }) => {
       changeSelectedOption({ target });
-      toggleActiveClass(element);
+      toggleActiveClass(dropdown);
     });
   });
 };

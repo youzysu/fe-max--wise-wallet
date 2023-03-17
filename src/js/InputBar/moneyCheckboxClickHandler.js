@@ -1,4 +1,11 @@
-import { CLASS_NAME, CLASS_SELECTOR, EVENT, ID_SELECTOR } from '../constant.js';
+import {
+  CLASS_NAME,
+  CLASS_SELECTOR,
+  EVENT,
+  EXPENSE_TEXT,
+  ID_SELECTOR,
+  INCOME_TEXT,
+} from '../constant.js';
 import { $ } from '../utils.js';
 
 export const moneyCheckboxClickHandler = () => {
@@ -11,31 +18,11 @@ export const moneyCheckboxClickHandler = () => {
 const changeCategoryList = (target) => {
   const $categoryList = $(CLASS_SELECTOR.categoryList);
   const $categoryDropdown = $(CLASS_SELECTOR.categoryDropdown);
-  const $incomeCategory = getIncomeCategory();
-  const $expenseCategory = getExpenseCategory();
+  const $incomeCategory = makeCategoryNode(INCOME_TEXT, CLASS_NAME.category);
+  const $expenseCategory = makeCategoryNode(EXPENSE_TEXT, CLASS_NAME.category);
 
   const categoryTemplate = target.checked ? $incomeCategory : $expenseCategory;
   $categoryDropdown.replaceChild(categoryTemplate, $categoryList);
-};
-
-const getExpenseCategory = () => {
-  const EXPENSE_TEXT = [
-    '생활',
-    '식비',
-    '교통',
-    '쇼핑/뷰티',
-    '의료/건강',
-    '문화/여가',
-    '미분류',
-  ];
-
-  return makeCategoryNode(EXPENSE_TEXT, CLASS_NAME.category);
-};
-
-const getIncomeCategory = () => {
-  const INCOME_TEXT = ['월급', '용돈', '기타 수입'];
-
-  return makeCategoryNode(INCOME_TEXT, CLASS_NAME.category);
 };
 
 const makeCategoryNode = (optionList, className) => {
