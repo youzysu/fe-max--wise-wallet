@@ -3,21 +3,17 @@ import { $ } from '../utils.js';
 
 export const submitButtonActivationHandler = () => {
   const $inputBarForm = $(CLASS_SELECTOR.inputBarForm);
-  const { date, money, memo, payment, category } = $inputBarForm.elements;
   const $submitButton = $(ID_SELECTOR.submitButton);
+  const { date, money, memo, payment, category } = $inputBarForm.elements;
 
-  $inputBarForm.addEventListener(EVENT.change, () =>
-    changeSubmitButtonActivation(
-      { date, money, memo, payment, category },
-      $submitButton
-    )
-  );
+  $inputBarForm.addEventListener(EVENT.change, () => {
+    isAllInputFilled({ date, money, memo, payment, category })
+      ? ($submitButton.disabled = false)
+      : ($submitButton.disabled = true);
+  });
 };
 
-const changeSubmitButtonActivation = (
-  { date, money, memo, payment, category },
-  button
-) => {
+const isAllInputFilled = ({ date, money, memo, payment, category }) => {
   const userInputValues = [
     date.value,
     money.value,
@@ -25,6 +21,5 @@ const changeSubmitButtonActivation = (
     payment.value,
     category.value,
   ];
-  const isAllInputFilled = userInputValues.every((val) => !!val === true);
-  isAllInputFilled ? (button.disabled = false) : (button.disabled = true);
+  return userInputValues.every((val) => !!val === true);
 };
