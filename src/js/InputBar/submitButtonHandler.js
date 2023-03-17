@@ -18,7 +18,6 @@ export const submitButtonHandler = () => {
 };
 
 const inputSubmitHandler = (e) => {
-  e.preventDefault();
   const { date, moneyType, money, memo, payment, category } = e.target.elements;
   const dailyHistoryItemData = [
     date.value,
