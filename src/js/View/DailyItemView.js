@@ -55,10 +55,12 @@ const makeDailyItemMoney = (money, isIncomeMoney) => {
   $dailyItemMoney.dataset.moneytype = dataMoneyType;
 
   const $dailyItemMoneyValue = createNode(TAG_NAME.span);
-  $dailyItemMoneyValue.textContent = `${money.toLocaleString('ko-KR')}원`;
+  const formatMoneyValue = `${isIncomeMoney ? '' : '-'}${money.toLocaleString(
+    'ko-KR'
+  )}원`;
+  $dailyItemMoneyValue.textContent = formatMoneyValue;
 
   const $dailyItemDeleteBtn = makeDailyItemDeleteBtn();
-
   $dailyItemMoney.append($dailyItemMoneyValue, $dailyItemDeleteBtn);
 
   return $dailyItemMoney;
