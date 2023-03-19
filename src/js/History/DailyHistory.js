@@ -1,13 +1,14 @@
-class DailyHistory {
+export class DailyHistory {
   #fullDate;
 
-  constructor(fullDate, items) {
+  constructor(fullDate) {
     this.#fullDate = fullDate;
     this.year;
     this.month;
     this.date;
     this.day;
-    this.items = items;
+    this.incomeItems = {};
+    this.expenseItems = {};
     this.incomeAmount = 0;
     this.expenseAmount = 0;
   }

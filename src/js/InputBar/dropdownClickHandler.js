@@ -1,6 +1,6 @@
 import { CLASS_SELECTOR, EVENT } from '../constant.js';
 import { $all, toggleActiveClass } from '../utils.js';
-import { checkSubmitButtonActivation } from './submitButtonHandler.js';
+import { checkSubmitButtonActivation } from './checkSubmitButtonActivation.js';
 
 export const dropdownClickHandler = () => {
   const $inputBarDropdowns = $all(CLASS_SELECTOR.inputBarDropdown);

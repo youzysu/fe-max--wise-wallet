@@ -66,7 +66,7 @@
             <label class="bold-small" for="date-input">일자</label>
             <input
               type="text"
-              name="date"
+              name="fullDate"
               id="date-input"
               pattern="^2\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])"
               title="yyyymmdd 날짜 형식의 8자리 숫자"
@@ -169,7 +169,8 @@
       <section class="history">
         <div class="total-info">
           <div class="total-info__left body-large">
-            <span>전체 내역 </span><span>13</span><span>건</span>
+            <span>전체 내역 </span><span id="total-count">13</span
+            ><span>건</span>
           </div>
           <form action="" class="total-info__right">
             <fieldset class="body-medium">

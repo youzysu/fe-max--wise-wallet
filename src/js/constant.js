@@ -18,6 +18,7 @@ export const ID_SELECTOR = {
   moneyInput: '#money-input',
   dateInput: '#date-input',
   submitButton: '#submit-btn',
+  totalCount: '#total-count',
 };
 
 export const EVENT = {
