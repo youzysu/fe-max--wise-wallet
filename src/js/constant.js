@@ -1,5 +1,27 @@
+export const TAG_NAME = {
+  li: 'li',
+  div: 'div',
+  span: 'span',
+  button: 'button',
+};
+
+export const MONEY_TYPE = {
+  income: 'income',
+  expense: 'expense',
+};
+
+export const FILE_PATH = {
+  dailyItemDeleteBtn: './src/assets/icon/delete-item-icon.svg',
+};
+
 export const CLASS_NAME = {
   category: 'category-list body-small',
+  dailyItem: 'daily-item',
+  dailyItemCategory: 'daily-item__category bold-medium',
+  dailyItemMemo: 'daily-item__memo body-medium',
+  dailyItemPayment: 'daily-item__payment body-medium',
+  dailyItemMoney: 'daily-item__money body-medium',
+  dailyItemDeleteBtn: 'daily-item__delete-btn',
 };
 
 export const CLASS_SELECTOR = {
@@ -19,6 +41,10 @@ export const ID_SELECTOR = {
   dateInput: '#date-input',
   submitButton: '#submit-btn',
   totalCount: '#total-count',
+  currentYear: '#year',
+  currentMonth: '#monthNumber',
+  totalIncomeValue: '#total-income-value',
+  totalExpenseValue: '#total-expense-value',
 };
 
 export const EVENT = {
@@ -29,17 +55,25 @@ export const EVENT = {
   submit: 'submit',
 };
 
-export const EXPENSE_TEXT = [
-  '생활',
-  '식비',
-  '교통',
-  '쇼핑/뷰티',
-  '의료/건강',
-  '문화/여가',
-  '미분류',
-];
+export const EXPENSE_CATEGORY = {
+  living: '생활',
+  food: '식비',
+  traffic: '교통',
+  shoppingBeauty: '쇼핑/뷰티',
+  cultureLeisure: '문화/여가',
+  health: '의료/건강',
+  unclassified: '미분류',
+};
 
-export const INCOME_TEXT = ['월급', '용돈', '기타 수입'];
+export const INCOME_CATEGORY = {
+  monthlySalary: '월급',
+  allowance: '용돈',
+  otherIncome: '기타 수입',
+};
+
+export const EXPENSE_TEXT = Object.values(EXPENSE_CATEGORY);
+
+export const INCOME_TEXT = Object.values(INCOME_CATEGORY);
 
 export const REGEX = {
   dateFormat: /^2\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])/,
