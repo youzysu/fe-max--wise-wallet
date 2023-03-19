@@ -1,5 +1,6 @@
 import { DailyItem } from '../History/DailyItem.js';
 import { storage } from '../History/Storage.js';
+import { DailyItemView } from '../View/DailyItemView.js';
 import { CLASS_SELECTOR, EVENT } from '../constant.js';
 import { $ } from '../utils.js';
 import { checkSubmitButtonActivation } from './checkSubmitButtonActivation.js';
@@ -13,11 +14,9 @@ export const submitButtonHandler = () => {
 
 const inputSubmitHandler = (e) => {
   e.preventDefault();
-  const { fullDate, moneyType, money, memo, payment, category } =
-    e.target.elements;
+  const { fullDate, money, memo, payment, category } = e.target.elements;
   const dailyItemData = {
     fullDate: fullDate.value,
-    isIncomeMoney: moneyType.checked,
     moneyValue: money.value,
     memoValue: memo.value,
     payment: payment.value,
@@ -27,17 +26,15 @@ const inputSubmitHandler = (e) => {
 };
 
 const saveDailyItem = (dailyItemData) => {
-  const { monthYear, date, isIncomeMoney, dailyItem } =
-    makeDailyItem(dailyItemData);
+  const { monthYear, date, dailyItem } = makeDailyItem(dailyItemData);
   const monthYearHistory = storage.getHistory(monthYear);
   const dailyHistory = monthYearHistory.getDailyHistory(date);
 
-  if (isIncomeMoney) {
-    dailyHistory.incomeItems[dailyItem.uuid] = dailyItem;
-    return;
-  }
+  dailyHistory.items[dailyItem.uuid] = dailyItem;
 
-  dailyHistory.expenseItems[dailyItem.uuid] = dailyItem;
+  const $dailyItemList = DailyItemView(dailyItem);
+  const $test = $('.daily-history');
+  $test.appendChild($dailyItemList);
 };
 
 const makeDailyItem = (dailyItemData) => {
@@ -47,7 +44,6 @@ const makeDailyItem = (dailyItemData) => {
   const fullDate = dailyItemData.fullDate;
   const monthYear = fullDate.slice(0, 6);
   const date = fullDate.slice(6);
-  const isIncomeMoney = dailyItemData.isIncomeMoney;
 
-  return { monthYear, date, isIncomeMoney, dailyItem };
+  return { monthYear, date, dailyItem };
 };

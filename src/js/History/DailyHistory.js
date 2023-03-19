@@ -7,6 +7,7 @@ export class DailyHistory {
     this.month;
     this.date;
     this.day;
+    this.items = {};
     this.incomeItems = {};
     this.expenseItems = {};
     this.incomeAmount = 0;
