@@ -1,4 +1,11 @@
+export const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
+
+export const ATTRIBUTE_NAME = {
+  class: 'class',
+};
+
 export const TAG_NAME = {
+  ul: 'ul',
   li: 'li',
   div: 'div',
   span: 'span',
@@ -22,6 +29,9 @@ export const CLASS_NAME = {
   dailyItemPayment: 'daily-item__payment body-medium',
   dailyItemMoney: 'daily-item__money body-medium',
   dailyItemDeleteBtn: 'daily-item__delete-btn',
+  dailyDateInfo: 'daily-history__date',
+  dailyTotal: 'daily-history__total',
+  dailyInfo: 'daily-history__info bold-medium',
 };
 
 export const CLASS_SELECTOR = {
@@ -31,6 +41,7 @@ export const CLASS_SELECTOR = {
   categoryDropdown: '.category-dropdown',
   categoryList: '.category-list',
   inputBarForm: '.input-bar__form',
+  historySection: '.monthly-history',
 };
 
 export const ID_SELECTOR = {

@@ -1,7 +1,8 @@
 import { DailyItem } from '../History/DailyItem.js';
-import { storage } from '../History/Storage.js';
-import { DailyItemView } from '../View/DailyItemView.js';
+import { historyStorage } from '../History/HistoryStorage.js';
+import { MonthlyHistoryView } from '../View/MonthlyHistoryView.js';
 import { CLASS_SELECTOR, EVENT } from '../constant.js';
+import { changeHeaderMonthYear } from '../init.js';
 import { $ } from '../utils.js';
 import { checkSubmitButtonActivation } from './checkSubmitButtonActivation.js';
 
@@ -26,24 +27,27 @@ const inputSubmitHandler = (e) => {
 };
 
 const saveDailyItem = (dailyItemData) => {
-  const { monthYear, date, dailyItem } = makeDailyItem(dailyItemData);
-  const monthYearHistory = storage.getHistory(monthYear);
-  const dailyHistory = monthYearHistory.getDailyHistory(date);
-
-  dailyHistory.items[dailyItem.uuid] = dailyItem;
-
-  const $dailyItemList = DailyItemView(dailyItem);
-  const $test = $('.daily-history');
-  $test.appendChild($dailyItemList);
-};
-
-const makeDailyItem = (dailyItemData) => {
   const dailyItem = new DailyItem(dailyItemData);
   if (!dailyItem.isValidValues) return;
 
-  const fullDate = dailyItemData.fullDate;
-  const monthYear = fullDate.slice(0, 6);
-  const date = fullDate.slice(6);
+  const curMonthlyHistory = historyStorage.getMonthlyHistory(
+    dailyItem.monthYear
+  );
+  const dailyHistory = curMonthlyHistory.getDailyHistory(dailyItem.date);
 
-  return { monthYear, date, dailyItem };
+  dailyHistory.addItem(dailyItem);
+  render(curMonthlyHistory, dailyItem);
+};
+
+const render = (curMonthlyHistory, dailyItem) => {
+  MonthlyHistoryView(curMonthlyHistory);
+
+  const currentDate = new Date(
+    `${dailyItem.year}-${dailyItem.month}-${dailyItem.date}`
+  );
+  const year = currentDate.getFullYear();
+  const monthNumber = currentDate.toLocaleString('en-US', { month: 'numeric' });
+  const monthChar = currentDate.toLocaleString('en-US', { month: 'long' });
+
+  changeHeaderMonthYear({ year, monthNumber, monthChar });
 };

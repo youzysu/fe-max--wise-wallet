@@ -166,13 +166,12 @@
       </section>
 
       <!-- 수입지출 내역 목록 -->
-      <section class="history">
-        <div class="total-info">
-          <div class="total-info__left body-large">
-            <span>전체 내역 </span><span id="total-count">13</span
-            ><span>건</span>
+      <section class="monthly-history">
+        <div class="monthly-history__info">
+          <div class="monthly-history__left body-large">
+            <span>전체 내역 </span><span id="total-count"></span><span>건</span>
           </div>
-          <form action="" class="total-info__right">
+          <form action="" class="monthly-history__right">
             <fieldset class="body-medium">
               <input
                 type="checkbox"
@@ -180,55 +179,20 @@
                 id="total-income"
                 checked />
               <label for="total-income"
-                ><span>수입 </span
-                ><span id="total-income-value">2,010,580</span></label
-              >
+                ><span>수입 </span><span id="total-income-value"></span
+              ></label>
               <input
                 type="checkbox"
                 name="total-expense"
                 id="total-expense"
                 checked />
               <label for="total-expense"
-                ><span>지출 </span
-                ><span id="total-expense-value">798,180</span></label
-              >
+                ><span>지출 </span><span id="total-expense-value"></span
+              ></label>
             </fieldset>
           </form>
         </div>
-
-        <ul class="daily-history">
-          <div class="daily-info bold-medium">
-            <div class="daily-info__date">
-              <span class="daily-info__dateChar">3월 15일</span
-              ><span class="daily-info__day">수</span>
-            </div>
-            <div class="daily-total">
-              <span>수입</span>
-              <span>2,010,580<span>원</span></span>
-              <span>지출</span>
-              <span>9,500<span>원</span></span>
-            </div>
-          </div>
-          <li class="daily-item">
-            <div
-              class="daily-item__category bold-medium"
-              data-category="미분류">
-              문화/여가
-            </div>
-            <span class="daily-item__memo body-medium"
-              >스트리밍 서비스 정기 결제</span
-            >
-            <span class="daily-item__payment body-medium">현대카드</span>
-            <div class="daily-item__money body-medium" data-moneytype="expense">
-              <span>10,900원</span>
-              <button type="button" class="daily-item__delete-btn">
-                <img
-                  src="./src/assets/icon/delete-item-icon.svg"
-                  alt="delete item button" />
-              </button>
-            </div>
-          </li>
-        </ul>
+        <div class="daily-wrapper"></div>
       </section>
     </main>
 

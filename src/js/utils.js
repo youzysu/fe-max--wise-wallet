@@ -17,3 +17,5 @@ export const toggleActiveClass = (nodeName) =>
   nodeName.classList.toggle('active');
 
 export const createNode = (tagName) => document.createElement(tagName);
+
+export const formatMoney = (money) => Number(money).toLocaleString('ko-KR');

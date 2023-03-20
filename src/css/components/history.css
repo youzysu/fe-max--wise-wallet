@@ -1,10 +1,10 @@
-.history {
+.monthly-history {
   padding-top: 92px;
   display: flex;
   flex-direction: column;
 }
 
-.total-info {
+.monthly-history__info {
   width: 848px;
   display: flex;
   justify-content: space-between;
@@ -12,20 +12,20 @@
   margin-bottom: 28px;
 }
 
-.total-info__right {
+.monthly-history__right {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.total-info__right > fieldset {
+.monthly-history__right > fieldset {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
 
-.total-info__right input[type='checkbox']:checked + label {
+.monthly-history__right input[type='checkbox']:checked + label {
   cursor: pointer;
   padding-left: 30px;
   background-repeat: no-repeat;
@@ -33,7 +33,7 @@
   background-image: url('/src/assets/icon/selected.svg');
 }
 
-.total-info__right input[type='checkbox'] + label {
+.monthly-history__right input[type='checkbox'] + label {
   cursor: pointer;
   padding-left: 30px;
   background-repeat: no-repeat;
@@ -45,7 +45,7 @@
   margin-bottom: 33px;
 }
 
-.daily-info {
+.daily-history__info {
   width: 100%;
   display: flex;
   align-items: center;
@@ -53,8 +53,8 @@
   margin-bottom: 8px;
 }
 
-.daily-info__day,
-.daily-total,
+.daily-history__day,
+.daily-history__total,
 .daily-item__payment {
   color: var(--color-primary-alt);
 }
@@ -63,7 +63,7 @@
   width: 120px;
 }
 
-.daily-info__dateChar {
+.daily-history__dateChar {
   color: var(--color-primary);
   margin-right: 8px;
 }

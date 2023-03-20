@@ -1,16 +1,28 @@
+import { historyStorage } from '../History/HistoryStorage.js';
+import { MonthlyHistoryView } from '../View/MonthlyHistoryView.js';
 import { EVENT, ID_SELECTOR } from '../constant.js';
 import { $ } from '../utils.js';
 
 export const yearMonthBtnClickHandler = () => {
   const $nextYearMonthBtn = $(ID_SELECTOR.nextYearMonthBtn);
   $nextYearMonthBtn.addEventListener(EVENT.click, () =>
-    setYearMonth(getNextYearMonth)
+    monthYearBtnClickHandler(getNextYearMonth)
   );
 
   const $prevYearMonthBtn = $(ID_SELECTOR.prevYearMonthBtn);
   $prevYearMonthBtn.addEventListener(EVENT.click, () =>
-    setYearMonth(getPrevYearMonth)
+    monthYearBtnClickHandler(getPrevYearMonth)
   );
+};
+
+const monthYearBtnClickHandler = (getChangeYearMonth) => {
+  const { changeYear, changeMonth } = setYearMonth(getChangeYearMonth);
+  const currentMonthYear = `${changeYear}${changeMonth
+    .toString()
+    .padStart(2, '0')}`;
+  const curMonthlyHistory = historyStorage.getMonthlyHistory(currentMonthYear);
+
+  MonthlyHistoryView(curMonthlyHistory);
 };
 
 const setYearMonth = (changeYearMonth) => {
@@ -29,6 +41,8 @@ const setYearMonth = (changeYearMonth) => {
     changeYear,
     changeMonth - 1
   ).toLocaleString('en-US', { month: 'long' });
+
+  return { changeYear, changeMonth };
 };
 
 const getNextYearMonth = (currentYear, currentMonth) => {
