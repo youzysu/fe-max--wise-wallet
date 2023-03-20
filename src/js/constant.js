@@ -34,6 +34,11 @@ export const CLASS_SELECTOR = {
 };
 
 export const ID_SELECTOR = {
+  currentYear: '#year',
+  currentMonthNumber: '#monthNumber',
+  currentMonthChar: '#monthChar',
+  nextYearMonthBtn: '#next-yearMonth-btn',
+  prevYearMonthBtn: '#prev-yearMonth-btn',
   paymentInput: '#payment-input',
   categoryInput: '#category-input',
   moneyCheckbox: '#money-type-checkbox',

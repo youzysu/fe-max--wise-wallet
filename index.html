@@ -20,17 +20,17 @@
         </h1>
 
         <div class="month-year__carousel">
-          <button type="button">
+          <button id="prev-yearMonth-btn" type="button">
             <img
               src="./src/assets/icon/chevron-left.svg"
               alt="previous month" />
           </button>
           <div class="month-year__content">
-            <span id="year" class="year bold-small">9999</span>
-            <span id="monthNumber" class="month-number display-large">2</span>
-            <span id="monthChar" class="month-char bold-small">February</span>
+            <span id="year" class="year bold-small"></span>
+            <span id="monthNumber" class="month-number display-large"></span>
+            <span id="monthChar" class="month-char bold-small"></span>
           </div>
-          <button type="button">
+          <button id="next-yearMonth-btn" type="button">
             <img src="./src/assets/icon/chevron-right.svg" alt="next month" />
           </button>
         </div>
@@ -180,15 +180,17 @@
                 id="total-income"
                 checked />
               <label for="total-income"
-                ><span>수입 </span><span>2,010,580</span></label
+                ><span>수입 </span
+                ><span id="total-income-value">2,010,580</span></label
               >
               <input
                 type="checkbox"
-                name="total-expenditure"
-                id="total-expenditure"
+                name="total-expense"
+                id="total-expense"
                 checked />
-              <label for="total-expenditure"
-                ><span>지출 </span><span>798,180</span></label
+              <label for="total-expense"
+                ><span>지출 </span
+                ><span id="total-expense-value">798,180</span></label
               >
             </fieldset>
           </form>
@@ -208,15 +210,17 @@
             </div>
           </div>
           <li class="daily-item">
-            <div class="daily-item__category">
-              <span class="bold-medium">문화/여가</span>
+            <div
+              class="daily-item__category bold-medium"
+              data-category="미분류">
+              문화/여가
             </div>
-            <span class="daily-item__body body-medium"
+            <span class="daily-item__memo body-medium"
               >스트리밍 서비스 정기 결제</span
             >
             <span class="daily-item__payment body-medium">현대카드</span>
-            <div class="daily-item__price">
-              <span class="body-medium">10,900<span>원</span></span>
+            <div class="daily-item__money body-medium" data-moneytype="expense">
+              <span>10,900원</span>
               <button type="button" class="daily-item__delete-btn">
                 <img
                   src="./src/assets/icon/delete-item-icon.svg"

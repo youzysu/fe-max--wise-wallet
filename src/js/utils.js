@@ -3,7 +3,7 @@ export const $ = (selector, element = document) =>
 
 export const $all = (selector) => document.querySelectorAll(selector);
 
-export const getCurrentDate = () => {
+export const getNowDate = () => {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const monthNumber = currentDate.toLocaleString('en-US', { month: 'numeric' });
