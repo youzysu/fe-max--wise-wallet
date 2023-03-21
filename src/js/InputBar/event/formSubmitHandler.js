@@ -1,7 +1,9 @@
-import { historyStorage } from '../../History/HistoryStorage.js';
-import { MonthlyHistoryView } from '../../View/MonthlyHistoryView.js';
+import { changeHeaderMonthYear } from '../../Header/HeaderEventHandler.js';
+import { historyStorage } from '../../HistoryStorage/HistoryStorage.js';
+import { monthlyHistoryView } from '../../MainPage/monthlyHistoryView.js';
+import { getDateFormat } from '../../utils.js';
 
-export const inputSubmitHandler = (e) => {
+export const formSubmitHandler = (e) => {
   e.preventDefault();
   const { fullDate, money, memo, payment, category } = e.target.elements;
   const [year, month, date] = [
@@ -16,21 +18,14 @@ export const inputSubmitHandler = (e) => {
     payment: payment.value,
     category: category.value,
   };
+
   saveDailyItem(dailyItemData);
 };
 
 const saveDailyItem = (dailyItemData) => {
-  historyStorage.saveDailyItem(dailyItemData);
-  // render(curMonthlyHistory, dailyItem);
-};
+  const monthlyHistory = historyStorage.saveDailyItem(dailyItemData);
+  monthlyHistoryView(monthlyHistory);
 
-const render = (curMonthlyHistory, dailyItem) => {
-  MonthlyHistoryView(curMonthlyHistory);
-
-  const currentDate = new Date(
-    `${dailyItem.year}-${dailyItem.month}-${dailyItem.date}`
-  );
-
-  const { year, monthNumber, monthChar } = getDateFormat(currentDate);
+  const { year, monthNumber, monthChar } = getDateFormat(dailyItemData.date);
   changeHeaderMonthYear({ year, monthNumber, monthChar });
 };

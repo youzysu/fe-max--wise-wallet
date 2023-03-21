@@ -2,9 +2,9 @@ import { EVENT, REGEX, SELECTOR } from '../constant.js';
 import { $, $all, toggleActiveClass } from '../utils.js';
 import { changeCategoryList } from './event/changeCategoryList.js';
 import { checkSubmitButtonActivation } from './event/checkSubmitButtonActivation.js';
-import { inputSubmitHandler } from './event/inputSubmitHandler.js';
+import { formSubmitHandler } from './event/formSubmitHandler.js';
 
-export function InputBarEventHandler() {
+export function inputBarEventHandler() {
   const $inputBarDropdowns = $all(SELECTOR.inputBarDropdown);
   const $moneyTypeCheckbox = $(SELECTOR.moneyCheckbox);
   const $paymentInput = $(SELECTOR.paymentInput);
@@ -41,7 +41,7 @@ export function InputBarEventHandler() {
   );
 
   $inputBarForm.addEventListener(EVENT.change, checkSubmitButtonActivation);
-  $inputBarForm.addEventListener(EVENT.submit, inputSubmitHandler);
+  $inputBarForm.addEventListener(EVENT.submit, formSubmitHandler);
 }
 
 const validateDateValue = ({ target }) => {

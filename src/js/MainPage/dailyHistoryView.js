@@ -1,8 +1,8 @@
 import { CLASSLIST, TAG_NAME } from '../constant.js';
 import { createNode, formatMoney } from '../utils.js';
-import { DailyItemView } from './DailyItemView.js';
+import { dailyItemView } from './dailyItemView.js';
 
-export const DailyHistoryView = (dailyHistory) => {
+export const dailyHistoryView = (dailyHistory) => {
   const {
     fullDate,
     month,
@@ -25,7 +25,7 @@ export const DailyHistoryView = (dailyHistory) => {
     incomeAmount,
     expenseAmount
   );
-  const $dailyItems = Object.values(dailyItems).map(DailyItemView);
+  const $dailyItems = Object.values(dailyItems).map(dailyItemView);
 
   $dailyHistoryList.append(...$dailyItems);
   $dailyHistory.append($dailyInfo, $dailyHistoryList);

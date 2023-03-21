@@ -1,9 +1,9 @@
-import { historyStorage } from '../History/HistoryStorage.js';
-import { MonthlyHistoryView } from '../View/MonthlyHistoryView.js';
+import { historyStorage } from '../HistoryStorage/HistoryStorage.js';
+import { monthlyHistoryView } from '../MainPage/monthlyHistoryView.js';
 import { EVENT, SELECTOR } from '../constant.js';
 import { $, getDateFormat } from '../utils.js';
 
-export function HeaderEventHandler() {
+export function headerEventHandler() {
   const $nextYearMonthBtn = $(SELECTOR.nextYearMonthBtn);
   $nextYearMonthBtn.addEventListener(EVENT.click, () =>
     monthYearBtnClickHandler(SELECTOR.nextYearMonthBtn)
@@ -36,7 +36,7 @@ const updateHeaderMonthYear = (buttonType) => {
 
 const renderMain = (updateDate) => {
   const curMonthlyHistory = historyStorage.getMonthlyHistory(updateDate);
-  MonthlyHistoryView(curMonthlyHistory);
+  monthlyHistoryView(curMonthlyHistory);
 };
 
 export const changeHeaderMonthYear = ({ year, monthNumber, monthChar }) => {

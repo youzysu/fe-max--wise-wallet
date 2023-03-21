@@ -20,6 +20,8 @@ export class HistoryStorage {
     const date = dailyItem.date.getDate();
     const dailyHistory = monthlyHistory.getDailyHistory(date);
     dailyHistory.addItem(dailyItem);
+
+    return monthlyHistory;
   }
 
   getMonthlyHistory(dateObject) {

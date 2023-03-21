@@ -1,7 +1,7 @@
 import { SELECTOR } from '../constant.js';
 import { $, getDateFormat } from '../utils.js';
 
-export function InputBarView() {
+export function inputBarView() {
   render();
   initDateInput();
 }

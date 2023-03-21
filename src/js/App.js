@@ -1,12 +1,12 @@
-import { HeaderEventHandler } from './Header/HeaderEventHandler.js';
-import { HeaderView } from './Header/HeaderView.js';
-import { InputBarEventHandler } from './InputBar/InputBarEventHandler.js';
-import { InputBarView } from './InputBar/InputBarView.js';
+import { headerEventHandler } from './Header/headerEventHandler.js';
+import { headerView } from './Header/headerView.js';
+import { inputBarEventHandler } from './InputBar/inputBarEventHandler.js';
+import { inputBarView } from './InputBar/inputBarView.js';
 
 export function App() {
-  HeaderView();
-  HeaderEventHandler();
+  headerView();
+  headerEventHandler();
 
-  InputBarView();
-  InputBarEventHandler();
+  inputBarView();
+  inputBarEventHandler();
 }
