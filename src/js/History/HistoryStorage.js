@@ -1,3 +1,4 @@
+import { DailyItem } from './DailyItem.js';
 import { MonthlyHistory } from './MonthlyHistory.js';
 
 export class HistoryStorage {
@@ -13,7 +14,19 @@ export class HistoryStorage {
     localStorage.setItem(monthYear, JSON.stringify(history));
   }
 
-  getMonthlyHistory(monthYear) {
+  saveDailyItem(dailyItemData) {
+    const dailyItem = new DailyItem(dailyItemData);
+    const monthlyHistory = this.getMonthlyHistory(dailyItem.date);
+    const date = dailyItem.date.getDate();
+    const dailyHistory = monthlyHistory.getDailyHistory(date);
+    dailyHistory.addItem(dailyItem);
+  }
+
+  getMonthlyHistory(dateObject) {
+    const year = dateObject.getFullYear();
+    const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
+    const monthYear = `${year}${month}`;
+
     const monthYearHistory = this.monthlyHistoryItems[monthYear];
     return monthYearHistory ?? this.makeMonthlyHistory(monthYear);
   }

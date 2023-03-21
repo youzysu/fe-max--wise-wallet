@@ -20,7 +20,7 @@
         </h1>
 
         <div class="month-year__carousel">
-          <button id="prev-yearMonth-btn" type="button">
+          <button id="prev-yearMonth-btn" class="month-year__btn" type="button">
             <img
               src="./src/assets/icon/chevron-left.svg"
               alt="previous month" />
@@ -30,7 +30,7 @@
             <span id="monthNumber" class="month-number display-large"></span>
             <span id="monthChar" class="month-char bold-small"></span>
           </div>
-          <button id="next-yearMonth-btn" type="button">
+          <button id="next-yearMonth-btn" class="month-year__btn" type="button">
             <img src="./src/assets/icon/chevron-right.svg" alt="next month" />
           </button>
         </div>
@@ -59,112 +59,6 @@
     </header>
 
     <main>
-      <!-- 새로운 내역 입력 영역 -->
-      <section id="input-bar" class="body-regular">
-        <form class="input-bar__form body-small" action="">
-          <div class="input-bar__component">
-            <label class="bold-small" for="date-input">일자</label>
-            <input
-              type="text"
-              name="fullDate"
-              id="date-input"
-              pattern="^2\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])"
-              title="yyyymmdd 날짜 형식의 8자리 숫자"
-              required />
-          </div>
-
-          <div class="input-bar__component">
-            <label class="bold-small" for="money-input">금액</label>
-            <div class="input-money-content">
-              <input
-                type="checkbox"
-                name="moneyType"
-                id="money-type-checkbox" />
-              <label for="money-type-checkbox"></label>
-              <input
-                type="text"
-                name="money"
-                placeholder="0"
-                id="money-input"
-                required />
-              <span class="body-small">원</span>
-            </div>
-          </div>
-
-          <div class="input-bar__component">
-            <label class="bold-small" for="memo-input">내용</label>
-            <input
-              type="text"
-              name="memo"
-              placeholder="입력하세요"
-              class="body-small"
-              id="memo-input"
-              required />
-          </div>
-
-          <div class="input-bar__component">
-            <label class="bold-small" for="payment-input">결제수단</label>
-            <input
-              id="payment-input"
-              class="dropdown-input body-small"
-              name="payment"
-              placeholder="선택하세요"
-              readonly
-              required />
-            <div class="input-bar__dropdown">
-              <ul class="payment-list body-small">
-                <li class="input-option">
-                  <span>현금</span
-                  ><button class="delete-btn" type="button">
-                    <img
-                      src="./src/assets/icon/closed.svg"
-                      alt="delete button" />
-                  </button>
-                </li>
-                <li class="input-option">
-                  <span>신용카드</span
-                  ><button class="delete-btn" type="button">
-                    <img
-                      src="./src/assets/icon/closed.svg"
-                      alt="delete button" />
-                  </button>
-                </li>
-                <li class="input-option"><span>추가하기</span></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="input-bar__component">
-            <label class="bold-small" for="category-input">분류</label>
-            <input
-              id="category-input"
-              type="text"
-              class="dropdown-input body-small"
-              placeholder="선택하세요"
-              name="category"
-              readonly
-              required />
-            <div class="input-bar__dropdown category-dropdown">
-              <ul class="category-list body-small">
-                <li class="input-option"><span>생활</span></li>
-                <li class="input-option"><span>식비</span></li>
-                <li class="input-option"><span>교통</span></li>
-                <li class="input-option"><span>쇼핑/뷰티</span></li>
-                <li class="input-option"><span>의료/건강</span></li>
-                <li class="input-option"><span>문화/여가</span></li>
-                <li class="input-option"><span>미분류</span></li>
-              </ul>
-            </div>
-          </div>
-
-          <button
-            class="input-bar__component"
-            id="submit-btn"
-            type="submit"
-            disabled></button>
-        </form>
-      </section>
-
       <!-- 수입지출 내역 목록 -->
       <section class="monthly-history">
         <div class="monthly-history__info">

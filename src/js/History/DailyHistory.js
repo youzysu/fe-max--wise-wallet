@@ -21,13 +21,13 @@ export class DailyHistory {
   }
 
   addItem(newDailyItem) {
+    this.dailyItems[newDailyItem.uuid] = newDailyItem;
+
     if (newDailyItem.isIncomeMoney) {
-      this.dailyItems[newDailyItem.uuid] = newDailyItem;
       this.#incomeAmount += newDailyItem.money;
       return;
     }
 
-    this.dailyItems[newDailyItem.uuid] = newDailyItem;
     this.#expenseAmount += newDailyItem.money;
     return;
   }

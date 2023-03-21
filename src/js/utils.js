@@ -1,10 +1,10 @@
 export const $ = (selector, element = document) =>
   element.querySelector(selector);
 
-export const $all = (selector) => document.querySelectorAll(selector);
+export const $all = (selector, element = document) =>
+  element.querySelectorAll(selector);
 
-export const getNowDate = () => {
-  const currentDate = new Date();
+export const getDateFormat = (currentDate) => {
   const year = currentDate.getFullYear();
   const monthNumber = currentDate.toLocaleString('en-US', { month: 'numeric' });
   const monthChar = currentDate.toLocaleString('en-US', { month: 'long' });

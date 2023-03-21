@@ -1,9 +1,9 @@
-import { CLASS_SELECTOR, ID_SELECTOR } from '../constant.js';
+import { SELECTOR } from '../constant.js';
 import { $, formatMoney } from '../utils.js';
 import { DailyHistoryView } from './DailyHistoryView.js';
 
 export const MonthlyHistoryView = (monthlyHistory) => {
-  const $historySection = $(CLASS_SELECTOR.historySection);
+  const $historySection = $(SELECTOR.historySection);
   changeTotalInfo(monthlyHistory, $historySection);
   const $dailyWrapper = $('.daily-wrapper', $historySection);
 
@@ -14,9 +14,9 @@ export const MonthlyHistoryView = (monthlyHistory) => {
 };
 
 const changeTotalInfo = (monthlyHistory, parentNode) => {
-  const $totalCount = $(ID_SELECTOR.totalCount, parentNode);
-  const $totalIncomeValue = $(ID_SELECTOR.totalIncomeValue, parentNode);
-  const $totalExpenseValue = $(ID_SELECTOR.totalExpenseValue, parentNode);
+  const $totalCount = $(SELECTOR.totalCount, parentNode);
+  const $totalIncomeValue = $(SELECTOR.totalIncomeValue, parentNode);
+  const $totalExpenseValue = $(SELECTOR.totalExpenseValue, parentNode);
 
   $totalCount.textContent = formatMoney(monthlyHistory.totalCount);
   $totalIncomeValue.textContent = formatMoney(monthlyHistory.totalIncome);

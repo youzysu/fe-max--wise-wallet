@@ -1,20 +1,16 @@
-import { EXPENSE_TEXT, INCOME_TEXT } from '../constant.js';
+import { CATEGORY_OPTIONS, INCOME_TEXT } from '../constant.js';
 
 export class DailyItem {
   #uuid;
-  #fullDate;
+  #date;
   #money;
   #memo;
   #payment;
   #category;
 
-  constructor({ fullDate, moneyValue, memoValue, payment, category }) {
+  constructor({ date, moneyValue, memoValue, payment, category }) {
     this.#uuid = self.crypto.randomUUID();
-    this.#fullDate = fullDate;
-    this.monthYear = fullDate.slice(0, 6);
-    this.year = fullDate.slice(0, 4);
-    this.month = fullDate.slice(4, 6);
-    this.date = fullDate.slice(6);
+    this.#date = date;
     this.#money = Number(moneyValue.replaceAll(',', ''));
     this.#memo = memoValue;
     this.#payment = payment;
@@ -31,8 +27,8 @@ export class DailyItem {
     return this.#uuid;
   }
 
-  get fullDate() {
-    return this.#fullDate;
+  get date() {
+    return this.#date;
   }
 
   get money() {
@@ -54,7 +50,6 @@ export class DailyItem {
 
 const inputValueValidator = {
   isValidCategory(categoryValue) {
-    const categoryOptions = EXPENSE_TEXT.concat(INCOME_TEXT);
-    return categoryOptions.includes(categoryValue);
+    return CATEGORY_OPTIONS.includes(categoryValue);
   },
 };

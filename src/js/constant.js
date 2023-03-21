@@ -1,9 +1,5 @@
 export const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
 
-export const ATTRIBUTE_NAME = {
-  class: 'class',
-};
-
 export const TAG_NAME = {
   ul: 'ul',
   li: 'li',
@@ -21,7 +17,7 @@ export const FILE_PATH = {
   dailyItemDeleteBtn: './src/assets/icon/delete-item-icon.svg',
 };
 
-export const CLASS_NAME = {
+export const CLASSLIST = {
   category: 'category-list body-small',
   dailyItem: 'daily-item',
   dailyItemCategory: 'daily-item__category bold-medium',
@@ -34,7 +30,7 @@ export const CLASS_NAME = {
   dailyInfo: 'daily-history__info bold-medium',
 };
 
-export const CLASS_SELECTOR = {
+export const SELECTOR = {
   categoryDropdown: '.category-dropdown',
   inputBarDropdown: '.input-bar__dropdown',
   inputOption: '.input-option',
@@ -42,9 +38,6 @@ export const CLASS_SELECTOR = {
   categoryList: '.category-list',
   inputBarForm: '.input-bar__form',
   historySection: '.monthly-history',
-};
-
-export const ID_SELECTOR = {
   currentYear: '#year',
   currentMonthNumber: '#monthNumber',
   currentMonthChar: '#monthChar',
@@ -90,6 +83,8 @@ export const INCOME_CATEGORY = {
 export const EXPENSE_TEXT = Object.values(EXPENSE_CATEGORY);
 
 export const INCOME_TEXT = Object.values(INCOME_CATEGORY);
+
+export const CATEGORY_OPTIONS = EXPENSE_TEXT.concat(INCOME_TEXT);
 
 export const REGEX = {
   dateFormat: /^2\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])/,
