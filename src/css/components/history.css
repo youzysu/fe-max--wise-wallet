@@ -1,10 +1,10 @@
-.history {
+.monthly-history {
   padding-top: 92px;
   display: flex;
   flex-direction: column;
 }
 
-.total-info {
+.monthly-history__info {
   width: 848px;
   display: flex;
   justify-content: space-between;
@@ -12,20 +12,20 @@
   margin-bottom: 28px;
 }
 
-.total-info__right {
+.monthly-history__right {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.total-info__right > fieldset {
+.monthly-history__right > fieldset {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
 
-.total-info__right input[type='checkbox']:checked + label {
+.monthly-history__right input[type='checkbox']:checked + label {
   cursor: pointer;
   padding-left: 30px;
   background-repeat: no-repeat;
@@ -33,7 +33,7 @@
   background-image: url('/src/assets/icon/selected.svg');
 }
 
-.total-info__right input[type='checkbox'] + label {
+.monthly-history__right input[type='checkbox'] + label {
   cursor: pointer;
   padding-left: 30px;
   background-repeat: no-repeat;
@@ -45,7 +45,7 @@
   margin-bottom: 33px;
 }
 
-.daily-info {
+.daily-history__info {
   width: 100%;
   display: flex;
   align-items: center;
@@ -53,13 +53,17 @@
   margin-bottom: 8px;
 }
 
-.daily-info__day,
-.daily-total,
+.daily-history__day,
+.daily-history__total,
 .daily-item__payment {
   color: var(--color-primary-alt);
 }
 
-.daily-info__dateChar {
+.daily-item__payment {
+  width: 120px;
+}
+
+.daily-history__dateChar {
   color: var(--color-primary);
   margin-right: 8px;
 }
@@ -83,24 +87,67 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--color-white);
 }
 
-.daily-item__body {
+.daily-item__category[data-category='생활'] {
+  background-color: var(--color-category-navy);
+}
+
+.daily-item__category[data-category='식비'] {
+  background-color: var(--color-category-blue);
+}
+
+.daily-item__category[data-category='교통'] {
+  background-color: var(--color-category-mint);
+}
+
+.daily-item__category[data-category='쇼핑/뷰티'] {
+  background-color: var(--color-category-cyan);
+}
+
+.daily-item__category[data-category='의료/건강'] {
+  background-color: var(--color-category-sky);
+}
+
+.daily-item__category[data-category='문화/여가'] {
+  background-color: var(--color-category-pink);
+}
+
+.daily-item__category[data-category='미분류'] {
+  background-color: var(--color-category-purple);
+}
+
+.daily-item__category[data-category='월급'] {
+  background-color: var(--color-category-green);
+}
+
+.daily-item__category[data-category='용돈'] {
+  background-color: var(--color-category-yellow);
+}
+
+.daily-item__category[data-category='기타수입'] {
+  background-color: var(--color-category-orange);
+}
+
+.daily-item__memo {
   width: 320px;
   color: var(--color-primary);
 }
 
-.daily-item__category > span {
-  color: var(--color-white);
-}
-
-.daily-item__price {
+.daily-item__money {
   width: 234px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  color: var(--color-secondary-red);
+}
+
+.daily-item__money[data-moneytype='income'] {
   color: var(--color-secondary-cyan);
+}
+
+.daily-item__money[data-moneytype='expense'] {
+  color: var(--color-secondary-red);
 }
 
 .daily-item .daily-item__delete-btn {

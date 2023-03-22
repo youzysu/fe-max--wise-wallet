@@ -125,6 +125,7 @@
 }
 
 .input-option > span {
+  width: 100%;
   display: flex;
   align-items: center;
 }
@@ -145,4 +146,14 @@
 
 .delete-btn > img {
   filter: var(--filter-secondary-red);
+}
+
+#submit-btn {
+  width: 40px;
+  height: 40px;
+  background-image: url('/src/assets/icon/button-active.svg');
+}
+
+#submit-btn:disabled {
+  background-image: url('/src/assets/icon/button-disabled.svg');
 }

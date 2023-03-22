@@ -20,17 +20,17 @@
         </h1>
 
         <div class="month-year__carousel">
-          <button type="button">
+          <button id="prev-yearMonth-btn" class="month-year__btn" type="button">
             <img
               src="./src/assets/icon/chevron-left.svg"
               alt="previous month" />
           </button>
           <div class="month-year__content">
-            <span id="year" class="year bold-small">9999</span>
-            <span id="monthNumber" class="month-number display-large">2</span>
-            <span id="monthChar" class="month-char bold-small">February</span>
+            <span id="year" class="year bold-small"></span>
+            <span id="monthNumber" class="month-number display-large"></span>
+            <span id="monthChar" class="month-char bold-small"></span>
           </div>
-          <button type="button">
+          <button id="next-yearMonth-btn" class="month-year__btn" type="button">
             <img src="./src/assets/icon/chevron-right.svg" alt="next month" />
           </button>
         </div>
@@ -58,170 +58,10 @@
       </div>
     </header>
 
-    <main>
-      <!-- 새로운 내역 입력 영역 -->
-      <section id="input-bar" class="body-regular">
-        <form class="input-bar__form body-small" action="">
-          <div class="input-bar__component">
-            <label class="bold-small" for="date-input">일자</label>
-            <input type="text" name="date" id="date-input" pattern="^\d{8}" />
-          </div>
-
-          <div class="input-bar__component">
-            <label class="bold-small" for="money-input">금액</label>
-            <div class="input-money-content">
-              <input
-                type="checkbox"
-                name="money-type-checkbox"
-                id="money-type-checkbox" />
-              <label for="money-type-checkbox"></label>
-              <input
-                type="text"
-                name="money"
-                placeholder="0"
-                id="money-input"
-                required />
-              <span class="body-small">원</span>
-            </div>
-          </div>
-
-          <div class="input-bar__component">
-            <label class="bold-small" for="memo-input">내용</label>
-            <input
-              type="text"
-              name="memo"
-              placeholder="입력하세요"
-              class="body-small"
-              id="memo-input" />
-          </div>
-
-          <div class="input-bar__component">
-            <label class="bold-small" for="payment-input">결제수단</label>
-            <input
-              id="payment-input"
-              class="dropdown-input body-small"
-              placeholder="선택하세요"
-              readonly />
-            <div class="input-bar__dropdown">
-              <ul class="payment-list body-small">
-                <li class="input-option">
-                  <span>현금</span
-                  ><button class="delete-btn">
-                    <img
-                      src="./src/assets/icon/closed.svg"
-                      alt="delete button" />
-                  </button>
-                </li>
-                <li class="input-option">
-                  <span>신용카드</span
-                  ><button class="delete-btn">
-                    <img
-                      src="./src/assets/icon/closed.svg"
-                      alt="delete button" />
-                  </button>
-                </li>
-                <li class="input-option"><span>추가하기</span></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="input-bar__component">
-            <label class="bold-small" for="category-input">분류</label>
-            <input
-              id="category-input"
-              class="dropdown-input body-small"
-              placeholder="선택하세요"
-              readonly />
-            <div class="input-bar__dropdown category-dropdown">
-              <ul class="category-list body-small">
-                <li class="input-option"><span>생활</span></li>
-                <li class="input-option"><span>식비</span></li>
-                <li class="input-option"><span>교통</span></li>
-                <li class="input-option"><span>쇼핑/뷰티</span></li>
-                <li class="input-option"><span>의료/건강</span></li>
-                <li class="input-option"><span>문화/여가</span></li>
-                <li class="input-option"><span>미분류</span></li>
-              </ul>
-            </div>
-          </div>
-
-          <button
-            class="input-bar__component"
-            id="submit-btn"
-            type="button"
-            disabled
-            onclick="">
-            <img
-              src="./src/assets/icon/button-disabled.svg"
-              alt="submit button" />
-          </button>
-        </form>
-      </section>
-
-      <!-- 수입지출 내역 목록 -->
-      <section class="history">
-        <div class="total-info">
-          <div class="total-info__left body-large">
-            <span>전체 내역 </span><span>13</span><span>건</span>
-          </div>
-          <form action="" class="total-info__right">
-            <fieldset class="body-medium">
-              <input
-                type="checkbox"
-                name="total-income"
-                id="total-income"
-                checked />
-              <label for="total-income"
-                ><span>수입 </span><span>2,010,580</span></label
-              >
-              <input
-                type="checkbox"
-                name="total-expenditure"
-                id="total-expenditure"
-                checked />
-              <label for="total-expenditure"
-                ><span>지출 </span><span>798,180</span></label
-              >
-            </fieldset>
-          </form>
-        </div>
-
-        <ul class="daily-history">
-          <div class="daily-info bold-medium">
-            <div class="daily-info__date">
-              <span class="daily-info__dateChar">3월 15일</span
-              ><span class="daily-info__day">수</span>
-            </div>
-            <div class="daily-total">
-              <span>수입</span>
-              <span>2,010,580<span>원</span></span>
-              <span>지출</span>
-              <span>9,500<span>원</span></span>
-            </div>
-          </div>
-          <li class="daily-item">
-            <div class="daily-item__category">
-              <span class="bold-medium">문화/여가</span>
-            </div>
-            <span class="daily-item__body body-medium"
-              >스트리밍 서비스 정기 결제</span
-            >
-            <span class="daily-item__payment body-medium">현대카드</span>
-            <div class="daily-item__price">
-              <span class="body-medium">10,900<span>원</span></span>
-              <button type="button" class="daily-item__delete-btn">
-                <img
-                  src="./src/assets/icon/delete-item-icon.svg"
-                  alt="delete item button" />
-              </button>
-            </div>
-          </li>
-        </ul>
-      </section>
-    </main>
+    <main></main>
 
     <footer></footer>
 
-    <script type="module" src="./src/js/index.js"></script>
+    <script type="module" src="/src/js/index.js"></script>
   </body>
 </html>
