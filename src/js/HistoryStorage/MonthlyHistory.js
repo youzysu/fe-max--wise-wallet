@@ -9,7 +9,7 @@ export class MonthlyHistory {
   constructor(monthYear) {
     this.#monthYear = monthYear;
     this.dailyHistoryItems = new Map();
-    this.#totalCount = this.calculateTotalCount();
+    this.#totalCount = 0;
     this.#totalIncome = 0;
     this.#totalExpense = 0;
   }
@@ -27,23 +27,25 @@ export class MonthlyHistory {
     return dailyHistory;
   }
 
-  calculateTotalCount() {
-    return this.dailyHistoryItems.size;
-  }
+  getState() {
+    const dailyHistories = [...this.dailyHistoryItems.values()];
+    this.#totalIncome = dailyHistories.reduce(
+      (acc, cur) => acc + cur.incomeAmount,
+      0
+    );
+    this.#totalExpense = dailyHistories.reduce(
+      (acc, cur) => acc + cur.expenseAmount,
+      0
+    );
+    this.#totalCount = dailyHistories.reduce(
+      (acc, cur) => acc + cur.dailyItems.size,
+      0
+    );
 
-  calculateTotalIncome() {}
-
-  calculateTotalExpense() {}
-
-  get totalCount() {
-    return this.#totalCount;
-  }
-
-  get totalIncome() {
-    return this.#totalIncome;
-  }
-
-  get totalExpense() {
-    return this.#totalExpense;
+    return {
+      count: this.#totalCount,
+      income: this.#totalIncome,
+      expense: this.#totalExpense,
+    };
   }
 }

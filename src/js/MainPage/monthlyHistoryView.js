@@ -16,8 +16,10 @@ export const monthlyHistoryView = (monthlyHistory) => {
   const $dailyWrapper = createNode('div');
   $dailyWrapper.classList = 'daily-wrapper';
 
-  const monthlyItems = [...monthlyHistory.dailyHistoryItems.values()];
-  const monthlyItemViews = monthlyItems.map(dailyHistoryView);
+  const sortedByLatestDate = [...monthlyHistory.dailyHistoryItems]
+    .sort((a, b) => b[0] - a[0])
+    .map((item) => item[1]);
+  const monthlyItemViews = sortedByLatestDate.map(dailyHistoryView);
   $dailyWrapper.append(...monthlyItemViews);
 
   $historySection.append($dailyWrapper);
@@ -25,9 +27,11 @@ export const monthlyHistoryView = (monthlyHistory) => {
 };
 
 const monthlyInfoTemplate = (monthlyHistory) => {
-  const totalCount = formatMoney(monthlyHistory.totalCount);
-  const totalIncomeValue = formatMoney(monthlyHistory.totalIncome);
-  const totalExpenseValue = formatMoney(monthlyHistory.totalExpense);
+  const { count, income, expense } = monthlyHistory.getState();
+
+  const totalCount = count;
+  const totalIncomeValue = formatMoney(income);
+  const totalExpenseValue = formatMoney(expense);
 
   return `
   <div class="monthly-history__info">

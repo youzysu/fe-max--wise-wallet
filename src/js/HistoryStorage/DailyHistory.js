@@ -5,7 +5,7 @@ export class DailyHistory {
 
   constructor(fullDate) {
     this.#fullDate = fullDate;
-    this.dailyItems = {};
+    this.dailyItems = new Map();
     this.incomeDailyItems = {};
     this.expenseDailyItems = {};
     this.#incomeAmount = 0;
@@ -13,7 +13,7 @@ export class DailyHistory {
   }
 
   addItem(newDailyItem) {
-    this.dailyItems[newDailyItem.uuid] = newDailyItem;
+    this.dailyItems.set(newDailyItem.uuid, newDailyItem);
 
     if (newDailyItem.isIncomeMoney) {
       this.#incomeAmount += newDailyItem.money;

@@ -11,7 +11,7 @@ export const dailyHistoryView = (dailyHistory) => {
   $dailyHistoryList.classList = 'daily-history__list';
 
   const $dailyInfo = makeDailyInfo(fullDate, incomeAmount, expenseAmount);
-  const $dailyItems = Object.values(dailyItems).map(dailyItemView);
+  const $dailyItems = [...dailyItems.values()].map(dailyItemView);
 
   $dailyHistoryList.append(...$dailyItems);
   $dailyHistory.append($dailyInfo, $dailyHistoryList);
