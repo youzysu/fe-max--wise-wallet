@@ -1,5 +1,3 @@
-import { WEEKDAY } from '../constant.js';
-
 export class DailyHistory {
   #fullDate;
   #incomeAmount;
@@ -7,12 +5,6 @@ export class DailyHistory {
 
   constructor(fullDate) {
     this.#fullDate = fullDate;
-    this.monthYear = fullDate.slice(0, 6);
-    this.year = fullDate.slice(0, 4);
-    this.month = fullDate.slice(4, 6);
-    this.date = fullDate.slice(6);
-    this.day =
-      WEEKDAY[new Date(`${this.year}-${this.month}-${this.date}`).getDay()];
     this.dailyItems = {};
     this.incomeDailyItems = {};
     this.expenseDailyItems = {};

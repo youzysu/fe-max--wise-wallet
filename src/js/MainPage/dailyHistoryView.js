@@ -1,30 +1,16 @@
-import { CLASSLIST, TAG_NAME } from '../constant.js';
+import { CLASSLIST, TAG_NAME, WEEKDAY } from '../constant.js';
 import { createNode, formatMoney } from '../utils.js';
 import { dailyItemView } from './dailyItemView.js';
 
 export const dailyHistoryView = (dailyHistory) => {
-  const {
-    fullDate,
-    month,
-    date,
-    day,
-    dailyItems,
-    incomeAmount,
-    expenseAmount,
-  } = dailyHistory;
+  const { fullDate, dailyItems, incomeAmount, expenseAmount } = dailyHistory;
 
   const $dailyHistory = createNode(TAG_NAME.div);
   $dailyHistory.classList = 'daily-history';
   const $dailyHistoryList = createNode(TAG_NAME.ul);
   $dailyHistoryList.classList = 'daily-history__list';
 
-  const $dailyInfo = makeDailyInfo(
-    month,
-    date,
-    day,
-    incomeAmount,
-    expenseAmount
-  );
+  const $dailyInfo = makeDailyInfo(fullDate, incomeAmount, expenseAmount);
   const $dailyItems = Object.values(dailyItems).map(dailyItemView);
 
   $dailyHistoryList.append(...$dailyItems);
@@ -32,26 +18,32 @@ export const dailyHistoryView = (dailyHistory) => {
   return $dailyHistory;
 };
 
-const makeDailyInfo = (month, date, day, incomeAmount, expenseAmount) => {
+const makeDailyInfo = (fullDate, incomeAmount, expenseAmount) => {
   const $dailyInfo = createNode(TAG_NAME.div);
   $dailyInfo.classList = CLASSLIST.dailyInfo;
 
-  const $dailyDateInfo = makeDailyDateInfo(month, date, day);
+  const $dailyDateInfo = makeDailyDateInfo(fullDate);
   const $dailyTotal = makeDailyTotal(incomeAmount, expenseAmount);
 
   $dailyInfo.append($dailyDateInfo, $dailyTotal);
   return $dailyInfo;
 };
 
-const makeDailyDateInfo = (month, date, day) => {
+const makeDailyDateInfo = (fullDate) => {
   const $dailyDateInfo = createNode(TAG_NAME.div);
   $dailyDateInfo.classList = 'daily-history__date';
 
   const $dailyInfoDateChar = createNode(TAG_NAME.span);
+  const $dailyInfoDay = createNode(TAG_NAME.span);
+
+  const year = fullDate.slice(0, 4);
+  const month = fullDate.slice(4, 6);
+  const date = fullDate.slice(6);
+  const day = WEEKDAY[new Date(`${year}-${month}-${date}`).getDay()];
+
   $dailyInfoDateChar.textContent = `${month}월 ${date}일`;
   $dailyInfoDateChar.classList = 'daily-history__dateChar';
 
-  const $dailyInfoDay = createNode(TAG_NAME.span);
   $dailyInfoDay.textContent = `${day}`;
   $dailyInfoDay.classList = 'daily-history__day';
 
