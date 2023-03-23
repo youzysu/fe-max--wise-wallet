@@ -53,14 +53,14 @@ class HistoryStorage {
 
   getDailyHistory(monthlyHistory, dateKey) {
     const dailyHistory = monthlyHistory.dailyHistoryItems[dateKey];
-    return dailyHistory ?? this.makeDailyHistory(dateKey);
+    return dailyHistory ?? this.makeDailyHistory(monthlyHistory, dateKey);
   }
 
   makeDailyHistory(monthlyHistory, dateKey) {
     const monthYear = monthlyHistory.monthYear;
     const fulldate = `${monthYear}${dateKey}`;
     const dailyHistory = new DailyHistory(fulldate);
-    dailyHistoryItems[dateKey] = dailyHistory;
+    monthlyHistory.dailyHistoryItems[dateKey] = dailyHistory;
 
     return dailyHistory;
   }
