@@ -1,7 +1,12 @@
 import { $, createNode, formatMoney } from '../utils.js';
 import { dailyHistoryView } from './dailyHistoryView.js';
 
-export const monthlyHistoryView = ({ dailyHistoryItems }) => {
+export const monthlyHistoryView = ({
+  dailyHistories,
+  totalCount,
+  totalIncome,
+  totalExpense,
+}) => {
   const $main = $('main');
   const $prevHistorySection = $('.monthly-history');
 
@@ -11,31 +16,33 @@ export const monthlyHistoryView = ({ dailyHistoryItems }) => {
 
   const $historySection = createNode('section');
   $historySection.classList = 'monthly-history';
-  $historySection.innerHTML = monthlyInfoTemplate({ dailyHistoryItems });
+  $historySection.innerHTML = monthlyInfoTemplate({
+    totalCount,
+    totalIncome,
+    totalExpense,
+  });
 
   const $dailyWrapper = createNode('div');
   $dailyWrapper.classList = 'daily-wrapper';
 
-  const dailyHistories = sortLatestDate({ dailyHistoryItems });
-  const monthlyItemViews = dailyHistories.map(dailyHistoryView);
+  const sortedLatestDailyHistories = sortLatestDate({ dailyHistories });
+
+  const monthlyItemViews = sortedLatestDailyHistories.map(dailyHistoryView);
   $dailyWrapper.append(...monthlyItemViews);
 
   $historySection.append($dailyWrapper);
   $main.append($historySection);
 };
 
-const sortLatestDate = ({ dailyHistoryItems }) => {
-  const monthlyHistories = Object.entries(dailyHistoryItems).sort(
-    ([dateA], [dateB]) => dateB - dateA
+const sortLatestDate = ({ dailyHistories }) => {
+  const monthlyHistories = Object.entries(dailyHistories).sort(
+    ([dateA], [dateB]) => new Date(dateB) - new Date(dateA)
   );
 
   return monthlyHistories.map((item) => item[1]);
 };
 
-const monthlyInfoTemplate = ({ dailyHistoryItems }) => {
-  const { totalIncome, totalExpense, totalCount } =
-    getTotalState(dailyHistoryItems);
-
+const monthlyInfoTemplate = ({ totalCount, totalIncome, totalExpense }) => {
   return `
   <div class="monthly-history__info">
     <div class="monthly-history__left body-large">
@@ -67,22 +74,4 @@ const monthlyInfoTemplate = ({ dailyHistoryItems }) => {
     </form>
   </div>
   `;
-};
-
-const getTotalState = (dailyHistoryItems) => {
-  const dailyHistories = Object.values(dailyHistoryItems);
-  const totalIncome = dailyHistories.reduce(
-    (acc, cur) => acc + cur.incomeAmount,
-    0
-  );
-  const totalExpense = dailyHistories.reduce(
-    (acc, cur) => acc + cur.expenseAmount,
-    0
-  );
-  const totalCount = dailyHistories.reduce(
-    (acc, cur) => acc + Object.keys(cur.dailyItems).length,
-    0
-  );
-
-  return { totalIncome, totalExpense, totalCount };
 };

@@ -1,12 +1,11 @@
 import { SELECTOR } from '../constant.js';
 import { $, getDateFormat } from '../utils.js';
 
-export function headerView() {
-  initHeaderMonthYear();
+export function headerView(currentDate) {
+  initHeaderMonthYear(currentDate);
 }
 
-const initHeaderMonthYear = () => {
-  const currentDate = new Date();
+const initHeaderMonthYear = (currentDate) => {
   const { year, monthNumber, monthChar, date } = getDateFormat(currentDate);
 
   changeHeaderMonthYear({ year, monthNumber, monthChar });
