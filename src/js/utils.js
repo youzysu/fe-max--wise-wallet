@@ -19,11 +19,3 @@ export const toggleActiveClass = (nodeName) =>
 export const createNode = (tagName) => document.createElement(tagName);
 
 export const formatMoney = (money) => Number(money).toLocaleString('ko-KR');
-
-export const getMonthYearKey = (dateObject) => {
-  const year = dateObject.getFullYear();
-  const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
-  const monthYear = `${year}${month}`;
-
-  return monthYear;
-};
