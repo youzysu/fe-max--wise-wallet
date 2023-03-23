@@ -1,33 +1,53 @@
+import { getMonthYearKey } from '../utils.js';
 import { DailyItem } from './DailyItem.js';
 import { MonthlyHistory } from './MonthlyHistory.js';
 
-export class HistoryStorage {
+class HistoryStorage {
   constructor() {
     this.monthlyHistoryItems = {};
+    // this.init();
   }
 
-  static getLocalStorage(monthYear) {
-    return JSON.parse(localStorage.getItem(monthYear));
+  init() {
+    const monthYearKeys = Object.keys(localStorage);
+    monthYearKeys.forEach((key, index) => {
+      this.monthlyHistoryItems[key] = JSON.parse(localStorage.getItem(key));
+    });
   }
 
-  static setLocalStorage(monthYear, history) {
-    localStorage.setItem(monthYear, JSON.stringify(history));
-  }
+  // getLocalStorage(monthYear) {
+  //   return JSON.parse(localStorage.getItem(monthYear));
+  // }
+
+  // setLocalStorage(monthYear, history) {
+  //   localStorage.setItem(monthYear, JSON.stringify(history));
+  // }
 
   saveDailyItem(dailyItemData) {
     const dailyItem = new DailyItem(dailyItemData);
-    const monthlyHistory = this.getMonthlyHistory(dailyItem.date);
-    const date = dailyItem.date.getDate();
-    const dailyHistory = monthlyHistory.getDailyHistory(date);
+
+    if (!dailyItem.isValidValues()) {
+      throw new Error('올바른 입력값이 아닙니다.');
+      return;
+    }
+
+    const itemDate = dailyItem.date;
+    const monthlyHistory = this.getMonthlyHistory(itemDate);
+    const dateKey = itemDate.getDate();
+    const dailyHistory = monthlyHistory.getDailyHistory(dateKey);
     dailyHistory.addItem(dailyItem);
+
+    const monthYearKey = getMonthYearKey(itemDate);
+    localStorage.setItem(monthYearKey, JSON.stringify(monthlyHistory));
+
+    console.log(monthlyHistory);
+    console.log(JSON.stringify(monthlyHistory));
 
     return monthlyHistory;
   }
 
   getMonthlyHistory(dateObject) {
-    const year = dateObject.getFullYear();
-    const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
-    const monthYear = `${year}${month}`;
+    const monthYear = getMonthYearKey(dateObject);
 
     const monthYearHistory = this.monthlyHistoryItems[monthYear];
     return monthYearHistory ?? this.makeMonthlyHistory(monthYear);

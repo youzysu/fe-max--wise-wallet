@@ -23,9 +23,14 @@ export const formSubmitHandler = (e) => {
 };
 
 const saveDailyItem = (dailyItemData) => {
-  const monthlyHistory = historyStorage.saveDailyItem(dailyItemData);
-  monthlyHistoryView(monthlyHistory);
+  try {
+    const monthlyHistory = historyStorage.saveDailyItem(dailyItemData);
+    monthlyHistoryView(monthlyHistory);
 
-  const { year, monthNumber, monthChar } = getDateFormat(dailyItemData.date);
-  changeHeaderMonthYear({ year, monthNumber, monthChar });
+    const { year, monthNumber, monthChar } = getDateFormat(dailyItemData.date);
+    changeHeaderMonthYear({ year, monthNumber, monthChar });
+  } catch (e) {
+    // 에러 메시지 유저에게 보여주는 UI 추가하기
+    // console.error(e.message);
+  }
 };

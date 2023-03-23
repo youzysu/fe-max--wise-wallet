@@ -1,38 +1,24 @@
 export class DailyHistory {
-  #fullDate;
-  #incomeAmount;
-  #expenseAmount;
-
   constructor(fullDate) {
-    this.#fullDate = fullDate;
-    this.dailyItems = new Map();
+    this.fullDate = fullDate;
+    this.dailyItems = {};
     this.incomeDailyItems = {};
     this.expenseDailyItems = {};
-    this.#incomeAmount = 0;
-    this.#expenseAmount = 0;
+    this.incomeAmount = 0;
+    this.expenseAmount = 0;
   }
 
   addItem(newDailyItem) {
-    this.dailyItems.set(newDailyItem.uuid, newDailyItem);
+    this.dailyItems[newDailyItem.uuid] = newDailyItem;
 
     if (newDailyItem.isIncomeMoney) {
-      this.#incomeAmount += newDailyItem.money;
+      this.incomeDailyItems[newDailyItem.uuid] = newDailyItem;
+      this.incomeAmount += newDailyItem.money;
       return;
     }
 
-    this.#expenseAmount += newDailyItem.money;
+    this.expenseDailyItems[newDailyItem.uuid] = newDailyItem;
+    this.expenseAmount += newDailyItem.money;
     return;
-  }
-
-  get incomeAmount() {
-    return this.#incomeAmount;
-  }
-
-  get expenseAmount() {
-    return this.#expenseAmount;
-  }
-
-  get fullDate() {
-    return this.#fullDate;
   }
 }

@@ -46,7 +46,12 @@ export function inputBarEventHandler() {
 
 const validateDateValue = ({ target }) => {
   const dateValue = target.value;
-  if (!REGEX.dateFormat.test(dateValue)) target.focus();
+  if (!REGEX.dateFormat.test(dateValue)) {
+    // const errorMessage = createNode('span');
+    // errorMessage.textContent = '잘못된 형식을 입력하셨습니다.';
+    // target.after(errorMessage);
+    target.focus();
+  }
 };
 
 const formatMoneyValue = ({ target }) => {

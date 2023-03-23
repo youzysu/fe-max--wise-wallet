@@ -1,51 +1,46 @@
 import { DailyHistory } from './DailyHistory.js';
 
 export class MonthlyHistory {
-  #monthYear;
-  #totalCount;
-  #totalIncome;
-  #totalExpense;
-
   constructor(monthYear) {
-    this.#monthYear = monthYear;
-    this.dailyHistoryItems = new Map();
-    this.#totalCount = 0;
-    this.#totalIncome = 0;
-    this.#totalExpense = 0;
+    this.monthYear = monthYear;
+    this.dailyHistoryItems = {};
+    this.totalCount = 0;
+    this.totalIncome = 0;
+    this.totalExpense = 0;
   }
 
-  getDailyHistory(date) {
-    const dailyHistory = this.dailyHistoryItems.get(date);
-    return dailyHistory ?? this.makeDailyHistory(date);
+  getDailyHistory(dateKey) {
+    const dailyHistory = this.dailyHistoryItems[dateKey];
+    return dailyHistory ?? this.makeDailyHistory(dateKey);
   }
 
-  makeDailyHistory(date) {
-    const fulldate = `${this.#monthYear}${date}`;
+  makeDailyHistory(dateKey) {
+    const fulldate = `${this.monthYear}${dateKey}`;
     const dailyHistory = new DailyHistory(fulldate);
-    this.dailyHistoryItems.set(date, dailyHistory);
+    this.dailyHistoryItems[dateKey] = dailyHistory;
 
     return dailyHistory;
   }
 
   getState() {
-    const dailyHistories = [...this.dailyHistoryItems.values()];
-    this.#totalIncome = dailyHistories.reduce(
+    const dailyHistories = Object.values(this.dailyHistoryItems);
+    this.totalIncome = dailyHistories.reduce(
       (acc, cur) => acc + cur.incomeAmount,
       0
     );
-    this.#totalExpense = dailyHistories.reduce(
+    this.totalExpense = dailyHistories.reduce(
       (acc, cur) => acc + cur.expenseAmount,
       0
     );
-    this.#totalCount = dailyHistories.reduce(
-      (acc, cur) => acc + cur.dailyItems.size,
+    this.totalCount = dailyHistories.reduce(
+      (acc, cur) => acc + Object.keys(cur.dailyItems).length,
       0
     );
 
     return {
-      count: this.#totalCount,
-      income: this.#totalIncome,
-      expense: this.#totalExpense,
+      count: this.totalCount,
+      income: this.totalIncome,
+      expense: this.totalExpense,
     };
   }
 }

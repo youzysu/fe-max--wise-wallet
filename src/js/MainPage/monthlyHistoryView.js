@@ -16,14 +16,20 @@ export const monthlyHistoryView = (monthlyHistory) => {
   const $dailyWrapper = createNode('div');
   $dailyWrapper.classList = 'daily-wrapper';
 
-  const sortedByLatestDate = [...monthlyHistory.dailyHistoryItems]
-    .sort((a, b) => b[0] - a[0])
-    .map((item) => item[1]);
-  const monthlyItemViews = sortedByLatestDate.map(dailyHistoryView);
+  const dailyHistories = sortLatestDate(monthlyHistory);
+  const monthlyItemViews = dailyHistories.map(dailyHistoryView);
   $dailyWrapper.append(...monthlyItemViews);
 
   $historySection.append($dailyWrapper);
   $main.append($historySection);
+};
+
+const sortLatestDate = (monthlyHistory) => {
+  const monthlyHistories = Object.entries(
+    monthlyHistory.dailyHistoryItems
+  ).sort(([dateA], [dateB]) => dateB - dateA);
+
+  return monthlyHistories.map((item) => item[1]);
 };
 
 const monthlyInfoTemplate = (monthlyHistory) => {
