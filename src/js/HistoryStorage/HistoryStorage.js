@@ -1,11 +1,12 @@
 import { getMonthYearKey } from '../utils.js';
+import { DailyHistory } from './DailyHistory.js';
 import { DailyItem } from './DailyItem.js';
 import { MonthlyHistory } from './MonthlyHistory.js';
 
 class HistoryStorage {
   constructor() {
     this.monthlyHistoryItems = {};
-    // this.init();
+    this.init();
   }
 
   init() {
@@ -14,14 +15,6 @@ class HistoryStorage {
       this.monthlyHistoryItems[key] = JSON.parse(localStorage.getItem(key));
     });
   }
-
-  // getLocalStorage(monthYear) {
-  //   return JSON.parse(localStorage.getItem(monthYear));
-  // }
-
-  // setLocalStorage(monthYear, history) {
-  //   localStorage.setItem(monthYear, JSON.stringify(history));
-  // }
 
   saveDailyItem(dailyItemData) {
     const dailyItem = new DailyItem(dailyItemData);
@@ -32,18 +25,44 @@ class HistoryStorage {
     }
 
     const itemDate = dailyItem.date;
-    const monthlyHistory = this.getMonthlyHistory(itemDate);
-    const dateKey = itemDate.getDate();
-    const dailyHistory = monthlyHistory.getDailyHistory(dateKey);
-    dailyHistory.addItem(dailyItem);
-
     const monthYearKey = getMonthYearKey(itemDate);
+    const dateKey = itemDate.getDate();
+
+    const monthlyHistory = this.getMonthlyHistory(itemDate);
+    const dailyHistory = this.getDailyHistory(monthlyHistory, dateKey);
+
+    this.addItem(dailyHistory, dailyItem);
     localStorage.setItem(monthYearKey, JSON.stringify(monthlyHistory));
 
-    console.log(monthlyHistory);
-    console.log(JSON.stringify(monthlyHistory));
-
     return monthlyHistory;
+  }
+
+  addItem(dailyHistory, newDailyItem) {
+    dailyHistory.dailyItems[newDailyItem.uuid] = newDailyItem;
+
+    if (newDailyItem.isIncomeMoney) {
+      dailyHistory.incomeDailyItems[newDailyItem.uuid] = newDailyItem;
+      dailyHistory.incomeAmount += newDailyItem.money;
+      return;
+    }
+
+    dailyHistory.expenseDailyItems[newDailyItem.uuid] = newDailyItem;
+    dailyHistory.expenseAmount += newDailyItem.money;
+    return;
+  }
+
+  getDailyHistory(monthlyHistory, dateKey) {
+    const dailyHistory = monthlyHistory.dailyHistoryItems[dateKey];
+    return dailyHistory ?? this.makeDailyHistory(dateKey);
+  }
+
+  makeDailyHistory(monthlyHistory, dateKey) {
+    const monthYear = monthlyHistory.monthYear;
+    const fulldate = `${monthYear}${dateKey}`;
+    const dailyHistory = new DailyHistory(fulldate);
+    dailyHistoryItems[dateKey] = dailyHistory;
+
+    return dailyHistory;
   }
 
   getMonthlyHistory(dateObject) {

@@ -31,6 +31,6 @@ const saveDailyItem = (dailyItemData) => {
     changeHeaderMonthYear({ year, monthNumber, monthChar });
   } catch (e) {
     // 에러 메시지 유저에게 보여주는 UI 추가하기
-    // console.error(e.message);
+    console.error(e.message);
   }
 };

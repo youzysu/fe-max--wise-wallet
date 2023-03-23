@@ -1,7 +1,7 @@
 import { $, createNode, formatMoney } from '../utils.js';
 import { dailyHistoryView } from './dailyHistoryView.js';
 
-export const monthlyHistoryView = (monthlyHistory) => {
+export const monthlyHistoryView = ({ dailyHistoryItems }) => {
   const $main = $('main');
   const $prevHistorySection = $('.monthly-history');
 
@@ -11,12 +11,12 @@ export const monthlyHistoryView = (monthlyHistory) => {
 
   const $historySection = createNode('section');
   $historySection.classList = 'monthly-history';
-  $historySection.innerHTML = monthlyInfoTemplate(monthlyHistory);
+  $historySection.innerHTML = monthlyInfoTemplate({ dailyHistoryItems });
 
   const $dailyWrapper = createNode('div');
   $dailyWrapper.classList = 'daily-wrapper';
 
-  const dailyHistories = sortLatestDate(monthlyHistory);
+  const dailyHistories = sortLatestDate({ dailyHistoryItems });
   const monthlyItemViews = dailyHistories.map(dailyHistoryView);
   $dailyWrapper.append(...monthlyItemViews);
 
@@ -24,20 +24,17 @@ export const monthlyHistoryView = (monthlyHistory) => {
   $main.append($historySection);
 };
 
-const sortLatestDate = (monthlyHistory) => {
-  const monthlyHistories = Object.entries(
-    monthlyHistory.dailyHistoryItems
-  ).sort(([dateA], [dateB]) => dateB - dateA);
+const sortLatestDate = ({ dailyHistoryItems }) => {
+  const monthlyHistories = Object.entries(dailyHistoryItems).sort(
+    ([dateA], [dateB]) => dateB - dateA
+  );
 
   return monthlyHistories.map((item) => item[1]);
 };
 
-const monthlyInfoTemplate = (monthlyHistory) => {
-  const { count, income, expense } = monthlyHistory.getState();
-
-  const totalCount = count;
-  const totalIncomeValue = formatMoney(income);
-  const totalExpenseValue = formatMoney(expense);
+const monthlyInfoTemplate = ({ dailyHistoryItems }) => {
+  const { totalIncome, totalExpense, totalCount } =
+    getTotalState(dailyHistoryItems);
 
   return `
   <div class="monthly-history__info">
@@ -52,7 +49,9 @@ const monthlyInfoTemplate = (monthlyHistory) => {
           id="total-income"
           checked />
         <label for="total-income"
-          ><span>수입 </span><span id="total-income-value">${totalIncomeValue}</span
+          ><span>수입 </span><span id="total-income-value">${formatMoney(
+            totalIncome
+          )}</span
         ></label>
         <input
           type="checkbox"
@@ -60,10 +59,30 @@ const monthlyInfoTemplate = (monthlyHistory) => {
           id="total-expense"
           checked />
         <label for="total-expense"
-          ><span>지출 </span><span id="total-expense-value">${totalExpenseValue}</span
+          ><span>지출 </span><span id="total-expense-value">${formatMoney(
+            totalExpense
+          )}</span
         ></label>
       </fieldset>
     </form>
   </div>
   `;
+};
+
+const getTotalState = (dailyHistoryItems) => {
+  const dailyHistories = Object.values(dailyHistoryItems);
+  const totalIncome = dailyHistories.reduce(
+    (acc, cur) => acc + cur.incomeAmount,
+    0
+  );
+  const totalExpense = dailyHistories.reduce(
+    (acc, cur) => acc + cur.expenseAmount,
+    0
+  );
+  const totalCount = dailyHistories.reduce(
+    (acc, cur) => acc + Object.keys(cur.dailyItems).length,
+    0
+  );
+
+  return { totalIncome, totalExpense, totalCount };
 };

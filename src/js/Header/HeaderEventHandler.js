@@ -1,5 +1,4 @@
-import { historyStorage } from '../HistoryStorage/HistoryStorage.js';
-import { monthlyHistoryView } from '../MainPage/monthlyHistoryView.js';
+import { renderMain } from '../App.js';
 import { EVENT, SELECTOR } from '../constant.js';
 import { $, getDateFormat } from '../utils.js';
 
@@ -32,11 +31,6 @@ const updateHeaderMonthYear = (buttonType) => {
   changeHeaderMonthYear({ year, monthNumber, monthChar });
 
   return updateDate;
-};
-
-const renderMain = (updateDate) => {
-  const curMonthlyHistory = historyStorage.getMonthlyHistory(updateDate);
-  monthlyHistoryView(curMonthlyHistory);
 };
 
 export const changeHeaderMonthYear = ({ year, monthNumber, monthChar }) => {
