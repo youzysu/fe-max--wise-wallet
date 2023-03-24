@@ -1,4 +1,4 @@
-import { $, createNode, formatMoney } from '../utils.js';
+import { $, createNode, formatMoney } from '../../utils.js';
 import { dailyHistoryView } from './dailyHistoryView.js';
 
 export const monthlyHistoryView = ({

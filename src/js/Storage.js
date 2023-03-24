@@ -1,6 +1,4 @@
-import { DailyHistory } from '../js/History/DailyHistory.js';
-import { DailyItem } from '../js/History/DailyItem.js';
-import { MonthlyHistory } from '../js/History/MonthlyHistory.js';
+import { DailyHistory, DailyItem, MonthlyHistory } from './History.js';
 
 class Storage {
   constructor() {
@@ -43,9 +41,9 @@ class Storage {
     return monthYearHistory ?? this.makeMonthlyHistory(monthYearKey);
   }
 
-  makeMonthlyHistory(monthYear) {
-    const monthYearHistory = new MonthlyHistory(monthYear);
-    this.monthlyHistories[monthYear] = monthYearHistory;
+  makeMonthlyHistory(monthYearKey) {
+    const monthYearHistory = new MonthlyHistory(monthYearKey);
+    this.monthlyHistories[monthYearKey] = monthYearHistory;
 
     return monthYearHistory;
   }

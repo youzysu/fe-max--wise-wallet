@@ -1,4 +1,4 @@
-import { CATEGORY_OPTIONS, INCOME_TEXT, REGEX } from '../constant.js';
+import { CATEGORY_OPTIONS, INCOME_TEXT, REGEX } from './constant.js';
 
 export class DailyItem {
   constructor({ date, moneyValue, memoValue, payment, category }) {
@@ -13,6 +13,27 @@ export class DailyItem {
 
   isValidValues() {
     return inputValueValidator.isValidCategory(this.category);
+  }
+}
+
+export class DailyHistory {
+  constructor(date) {
+    this.date = date;
+    this.dailyItems = {};
+    this.incomeDailyItems = {};
+    this.expenseDailyItems = {};
+    this.incomeAmount = 0;
+    this.expenseAmount = 0;
+  }
+}
+
+export class MonthlyHistory {
+  constructor(monthYear) {
+    this.monthYear = monthYear;
+    this.dailyHistories = {};
+    this.totalCount = 0;
+    this.totalIncome = 0;
+    this.totalExpense = 0;
   }
 }
 

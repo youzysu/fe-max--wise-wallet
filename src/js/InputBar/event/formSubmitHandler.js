@@ -1,5 +1,5 @@
 import { changeHeaderMonthYear } from '../../Header/HeaderEventHandler.js';
-import { monthlyHistoryView } from '../../MainPage/monthlyHistoryView.js';
+import { monthlyHistoryView } from '../../MainPage/View/monthlyHistoryView.js';
 import { storage } from '../../Storage.js';
 import { getDateFormat } from '../../utils.js';
 
