@@ -14,8 +14,7 @@ export const monthlyHistoryView = ({
     $prevHistorySection.remove();
   }
 
-  const $historySection = createNode('section');
-  $historySection.className = 'monthly-history';
+  const $historySection = createNode('section', 'monthly-history');
   $historySection.innerHTML = monthlyInfoTemplate({
     totalCount,
     totalIncome,
@@ -39,9 +38,7 @@ const renderDailyHistories = ({ dailyHistories }) => {
     $prevDailyWrapper.remove();
   }
 
-  const $dailyWrapper = createNode('div');
-  $dailyWrapper.className = 'daily-wrapper';
-
+  const $dailyWrapper = createNode('div', 'daily-wrapper');
   const sortedLatestDailyHistories = sortLatestDate({ dailyHistories });
   const monthlyItemViews = sortedLatestDailyHistories.map(dailyHistoryView);
   $dailyWrapper.append(...monthlyItemViews);

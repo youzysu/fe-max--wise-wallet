@@ -4,7 +4,7 @@ import {
   INCOME_TEXT,
   SELECTOR,
 } from '../../constant.js';
-import { $ } from '../../utils.js';
+import { $, createNode } from '../../utils.js';
 
 export const changeCategoryList = (target) => {
   const $categoryList = $(SELECTOR.categoryList);
@@ -17,14 +17,11 @@ export const changeCategoryList = (target) => {
 };
 
 const makeCategoryNode = (optionList, className) => {
-  const $category = document.createElement('ul');
-  $category.className = className;
+  const $category = createNode('ul', className);
 
   optionList.forEach((text) => {
-    const $li = document.createElement('li');
-    $li.className = 'input-option';
-
-    const $span = document.createElement('span');
+    const $li = createNode('li', 'input-option');
+    const $span = createNode('span');
     $span.textContent = text;
 
     $li.appendChild($span);

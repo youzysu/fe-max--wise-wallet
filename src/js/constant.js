@@ -1,13 +1,5 @@
 export const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
 
-export const TAG_NAME = {
-  ul: 'ul',
-  li: 'li',
-  div: 'div',
-  span: 'span',
-  button: 'button',
-};
-
 export const MONEY_TYPE = {
   income: 'income',
   expense: 'expense',

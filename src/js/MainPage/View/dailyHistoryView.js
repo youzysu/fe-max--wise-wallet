@@ -1,4 +1,4 @@
-import { CLASSNAME, TAG_NAME, WEEKDAY } from '../../constant.js';
+import { CLASSNAME, WEEKDAY } from '../../constant.js';
 import { $, createNode, formatMoney } from '../../utils.js';
 import { dailyItemView } from './dailyItemView.js';
 
@@ -12,10 +12,8 @@ export const dailyHistoryView = (dailyHistory) => {
     expenseAmount,
   } = dailyHistory;
 
-  const $dailyHistory = createNode(TAG_NAME.div);
-  const $dailyHistoryList = createNode(TAG_NAME.ul);
-  $dailyHistory.className = 'daily-history';
-  $dailyHistoryList.className = 'daily-history__list';
+  const $dailyHistory = createNode('div', 'daily-history');
+  const $dailyHistoryList = createNode('ul', 'daily-history__list');
 
   const isTotalIncomeChecked = $('#total-income').checked;
   const isTotalExpenseChecked = $('#total-expense').checked;
@@ -58,8 +56,7 @@ const makeDailyInfo = (
   incomeAmount,
   expenseAmount
 ) => {
-  const $dailyInfo = createNode(TAG_NAME.div);
-  $dailyInfo.className = CLASSNAME.dailyInfo;
+  const $dailyInfo = createNode('div', CLASSNAME.dailyInfo);
 
   const $dailyDateInfo = makeDailyDateInfo(date);
   const $dailyTotal = makeDailyTotal(
@@ -79,17 +76,16 @@ const makeDailyTotal = (
   incomeAmount,
   expenseAmount
 ) => {
-  const $dailyTotal = createNode(TAG_NAME.div);
-  $dailyTotal.className = 'daily-history__total';
+  const $dailyTotal = createNode('div', 'daily-history__total');
 
   if (isTotalIncomeChecked && incomeAmount) {
-    const $dailyTotalIncome = createNode(TAG_NAME.span);
+    const $dailyTotalIncome = createNode('span');
     $dailyTotalIncome.textContent = `수입 ${formatMoney(incomeAmount)}원 `;
     $dailyTotal.append($dailyTotalIncome);
   }
 
   if (isTotalExpenseChecked && expenseAmount) {
-    const $dailyTotalExpense = createNode(TAG_NAME.span);
+    const $dailyTotalExpense = createNode('span');
     $dailyTotalExpense.textContent = `지출 ${formatMoney(expenseAmount)}원`;
     $dailyTotal.append($dailyTotalExpense);
   }
@@ -98,11 +94,9 @@ const makeDailyTotal = (
 };
 
 const makeDailyDateInfo = (date) => {
-  const $dailyDateInfo = createNode(TAG_NAME.div);
-  $dailyDateInfo.className = 'daily-history__date';
-
-  const $dailyInfoDateChar = createNode(TAG_NAME.span);
-  const $dailyInfoDay = createNode(TAG_NAME.span);
+  const $dailyDateInfo = createNode('div', 'daily-history__date');
+  const $dailyInfoDateChar = createNode('span', 'daily-history__dateChar');
+  const $dailyInfoDay = createNode('span', 'daily-history__day');
 
   const dateObj = new Date(date);
   const year = dateObj.getFullYear();
@@ -111,10 +105,7 @@ const makeDailyDateInfo = (date) => {
   const day = WEEKDAY[dateObj.getDay()];
 
   $dailyInfoDateChar.textContent = `${month}월 ${dateView}일`;
-  $dailyInfoDateChar.className = 'daily-history__dateChar';
-
   $dailyInfoDay.textContent = `${day}`;
-  $dailyInfoDay.className = 'daily-history__day';
 
   $dailyDateInfo.append($dailyInfoDateChar, $dailyInfoDay);
   return $dailyDateInfo;
