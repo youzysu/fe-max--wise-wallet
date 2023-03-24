@@ -27,19 +27,23 @@ export const dailyHistoryView = (dailyHistory) => {
     expenseAmount
   );
 
-  if (isTotalIncomeChecked && incomeAmount !== 0) {
+  if (isTotalIncomeChecked && incomeAmount) {
     if (isTotalExpenseChecked) {
       appendDailyItemViews($dailyHistoryList, dailyItems);
     } else {
       appendDailyItemViews($dailyHistoryList, incomeDailyItems);
     }
     $dailyHistory.append($dailyInfo, $dailyHistoryList);
-  } else if (isTotalExpenseChecked && expenseAmount !== 0) {
-    appendDailyItemViews($dailyHistoryList, expenseDailyItems);
-    $dailyHistory.append($dailyInfo, $dailyHistoryList);
+    return $dailyHistory;
   }
 
-  return $dailyHistory;
+  if (isTotalExpenseChecked && expenseAmount) {
+    appendDailyItemViews($dailyHistoryList, expenseDailyItems);
+    $dailyHistory.append($dailyInfo, $dailyHistoryList);
+    return $dailyHistory;
+  }
+
+  return '';
 };
 
 const appendDailyItemViews = (parent, items) => {

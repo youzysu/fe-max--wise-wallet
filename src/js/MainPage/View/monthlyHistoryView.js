@@ -43,7 +43,6 @@ const renderDailyHistories = ({ dailyHistories }) => {
   $dailyWrapper.className = 'daily-wrapper';
 
   const sortedLatestDailyHistories = sortLatestDate({ dailyHistories });
-
   const monthlyItemViews = sortedLatestDailyHistories.map(dailyHistoryView);
   $dailyWrapper.append(...monthlyItemViews);
 
