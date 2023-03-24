@@ -1,32 +1,96 @@
 import { CLASSNAME, TAG_NAME, WEEKDAY } from '../../constant.js';
-import { createNode, formatMoney } from '../../utils.js';
+import { $, createNode, formatMoney } from '../../utils.js';
 import { dailyItemView } from './dailyItemView.js';
 
 export const dailyHistoryView = (dailyHistory) => {
-  const { date, dailyItems, incomeAmount, expenseAmount } = dailyHistory;
+  const {
+    date,
+    dailyItems,
+    incomeDailyItems,
+    expenseDailyItems,
+    incomeAmount,
+    expenseAmount,
+  } = dailyHistory;
 
   const $dailyHistory = createNode(TAG_NAME.div);
-  $dailyHistory.className = 'daily-history';
   const $dailyHistoryList = createNode(TAG_NAME.ul);
+  $dailyHistory.className = 'daily-history';
   $dailyHistoryList.className = 'daily-history__list';
 
-  const $dailyInfo = makeDailyInfo(date, incomeAmount, expenseAmount);
-  const $dailyItems = Object.values(dailyItems).map(dailyItemView);
+  const isTotalIncomeChecked = $('#total-income').checked;
+  const isTotalExpenseChecked = $('#total-expense').checked;
+  const $dailyInfo = makeDailyInfo(
+    isTotalIncomeChecked,
+    isTotalExpenseChecked,
+    date,
+    incomeAmount,
+    expenseAmount
+  );
 
-  $dailyHistoryList.append(...$dailyItems);
-  $dailyHistory.append($dailyInfo, $dailyHistoryList);
+  if (isTotalIncomeChecked && incomeAmount !== 0) {
+    if (isTotalExpenseChecked) {
+      appendDailyItemViews($dailyHistoryList, dailyItems);
+    } else {
+      appendDailyItemViews($dailyHistoryList, incomeDailyItems);
+    }
+    $dailyHistory.append($dailyInfo, $dailyHistoryList);
+  } else if (isTotalExpenseChecked && expenseAmount !== 0) {
+    appendDailyItemViews($dailyHistoryList, expenseDailyItems);
+    $dailyHistory.append($dailyInfo, $dailyHistoryList);
+  }
+
   return $dailyHistory;
 };
 
-const makeDailyInfo = (date, incomeAmount, expenseAmount) => {
+const appendDailyItemViews = (parent, items) => {
+  const $dailyItems = Object.values(items).map(dailyItemView);
+  parent.append(...$dailyItems);
+};
+
+const makeDailyInfo = (
+  isTotalIncomeChecked,
+  isTotalExpenseChecked,
+  date,
+  incomeAmount,
+  expenseAmount
+) => {
   const $dailyInfo = createNode(TAG_NAME.div);
   $dailyInfo.className = CLASSNAME.dailyInfo;
 
   const $dailyDateInfo = makeDailyDateInfo(date);
-  const $dailyTotal = makeDailyTotal(incomeAmount, expenseAmount);
+  const $dailyTotal = makeDailyTotal(
+    isTotalIncomeChecked,
+    isTotalExpenseChecked,
+    incomeAmount,
+    expenseAmount
+  );
 
   $dailyInfo.append($dailyDateInfo, $dailyTotal);
   return $dailyInfo;
+};
+
+const makeDailyTotal = (
+  isTotalIncomeChecked,
+  isTotalExpenseChecked,
+  incomeAmount,
+  expenseAmount
+) => {
+  const $dailyTotal = createNode(TAG_NAME.div);
+  $dailyTotal.className = 'daily-history__total';
+
+  if (isTotalIncomeChecked && incomeAmount) {
+    const $dailyTotalIncome = createNode(TAG_NAME.span);
+    $dailyTotalIncome.textContent = `수입 ${formatMoney(incomeAmount)}원 `;
+    $dailyTotal.append($dailyTotalIncome);
+  }
+
+  if (isTotalExpenseChecked && expenseAmount) {
+    const $dailyTotalExpense = createNode(TAG_NAME.span);
+    $dailyTotalExpense.textContent = `지출 ${formatMoney(expenseAmount)}원`;
+    $dailyTotal.append($dailyTotalExpense);
+  }
+
+  return $dailyTotal;
 };
 
 const makeDailyDateInfo = (date) => {
@@ -50,25 +114,4 @@ const makeDailyDateInfo = (date) => {
 
   $dailyDateInfo.append($dailyInfoDateChar, $dailyInfoDay);
   return $dailyDateInfo;
-};
-
-const makeDailyTotal = (incomeAmount, expenseAmount) => {
-  const $dailyTotal = createNode(TAG_NAME.div);
-  $dailyTotal.className = 'daily-history__total';
-
-  const $dailyTotalIncome = createNode(TAG_NAME.span);
-  $dailyTotalIncome.textContent = `수입 ${formatMoney(incomeAmount)}원 `;
-
-  const $dailyTotalExpense = createNode(TAG_NAME.span);
-  $dailyTotalExpense.textContent = `지출 ${formatMoney(expenseAmount)}원`;
-
-  if (incomeAmount) {
-    $dailyTotal.append($dailyTotalIncome);
-  }
-
-  if (expenseAmount) {
-    $dailyTotal.append($dailyTotalExpense);
-  }
-
-  return $dailyTotal;
 };

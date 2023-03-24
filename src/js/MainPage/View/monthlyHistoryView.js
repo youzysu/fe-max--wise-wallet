@@ -22,6 +22,23 @@ export const monthlyHistoryView = ({
     totalExpense,
   });
 
+  $main.append($historySection);
+  renderDailyHistories({ dailyHistories });
+
+  const $monthlyHistoryCheckbox = $('.monthly-history__right');
+  $monthlyHistoryCheckbox.addEventListener('change', () => {
+    renderDailyHistories({ dailyHistories });
+  });
+};
+
+const renderDailyHistories = ({ dailyHistories }) => {
+  const $historySection = $('.monthly-history');
+  const $prevDailyWrapper = $('.daily-wrapper');
+
+  if ($prevDailyWrapper) {
+    $prevDailyWrapper.remove();
+  }
+
   const $dailyWrapper = createNode('div');
   $dailyWrapper.className = 'daily-wrapper';
 
@@ -31,7 +48,6 @@ export const monthlyHistoryView = ({
   $dailyWrapper.append(...monthlyItemViews);
 
   $historySection.append($dailyWrapper);
-  $main.append($historySection);
 };
 
 const sortLatestDate = ({ dailyHistories }) => {
