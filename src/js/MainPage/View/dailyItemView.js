@@ -1,11 +1,11 @@
-import { CLASSLIST, FILE_PATH, MONEY_TYPE, TAG_NAME } from '../../constant.js';
+import { CLASSNAME, FILE_PATH, MONEY_TYPE, TAG_NAME } from '../../constant.js';
 import { createNode, formatMoney } from '../../utils.js';
 
 export const dailyItemView = (dailyItem) => {
   const { uuid, category, memo, payment, money, isIncomeMoney } = dailyItem;
 
   const $dailyItemList = createNode(TAG_NAME.li);
-  $dailyItemList.classList = CLASSLIST.dailyItem;
+  $dailyItemList.className = CLASSNAME.dailyItem;
   $dailyItemList.dataset.itemId = uuid;
 
   const $dailyItemCategory = makeDailyItemCategory(category);
@@ -24,7 +24,7 @@ export const dailyItemView = (dailyItem) => {
 
 const makeDailyItemCategory = (category) => {
   const $dailyItemCategory = createNode(TAG_NAME.div);
-  $dailyItemCategory.classList = CLASSLIST.dailyItemCategory;
+  $dailyItemCategory.className = CLASSNAME.dailyItemCategory;
 
   $dailyItemCategory.dataset.category = category;
   $dailyItemCategory.textContent = category;
@@ -34,7 +34,7 @@ const makeDailyItemCategory = (category) => {
 
 const makeDailyItemMemo = (memo) => {
   const $dailyItemMemo = createNode(TAG_NAME.span);
-  $dailyItemMemo.classList = CLASSLIST.dailyItemMemo;
+  $dailyItemMemo.className = CLASSNAME.dailyItemMemo;
   $dailyItemMemo.textContent = memo;
 
   return $dailyItemMemo;
@@ -42,7 +42,7 @@ const makeDailyItemMemo = (memo) => {
 
 const makeDailyItemPayment = (payment) => {
   const $dailyItemPayment = createNode(TAG_NAME.span);
-  $dailyItemPayment.classList = CLASSLIST.dailyItemPayment;
+  $dailyItemPayment.className = CLASSNAME.dailyItemPayment;
   $dailyItemPayment.textContent = payment;
 
   return $dailyItemPayment;
@@ -50,7 +50,7 @@ const makeDailyItemPayment = (payment) => {
 
 const makeDailyItemMoney = (money, isIncomeMoney) => {
   const $dailyItemMoney = createNode(TAG_NAME.div);
-  $dailyItemMoney.classList = CLASSLIST.dailyItemMoney;
+  $dailyItemMoney.className = CLASSNAME.dailyItemMoney;
   const dataMoneyType = isIncomeMoney ? MONEY_TYPE.income : MONEY_TYPE.expense;
   $dailyItemMoney.dataset.moneytype = dataMoneyType;
 
@@ -66,7 +66,7 @@ const makeDailyItemMoney = (money, isIncomeMoney) => {
 
 const makeDailyItemDeleteBtn = () => {
   const $dailyItemDeleteBtn = createNode(TAG_NAME.button);
-  $dailyItemDeleteBtn.classList = CLASSLIST.dailyItemDeleteBtn;
+  $dailyItemDeleteBtn.className = CLASSNAME.dailyItemDeleteBtn;
   $dailyItemDeleteBtn.setAttribute('type', TAG_NAME.button);
 
   const $buttonImage = createNode('img');

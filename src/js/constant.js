@@ -17,7 +17,7 @@ export const FILE_PATH = {
   dailyItemDeleteBtn: './src/assets/icon/delete-item-icon.svg',
 };
 
-export const CLASSLIST = {
+export const CLASSNAME = {
   category: 'category-list body-small',
   dailyItem: 'daily-item',
   dailyItemCategory: 'daily-item__category bold-medium',

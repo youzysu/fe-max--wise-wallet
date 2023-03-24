@@ -15,7 +15,7 @@ export const monthlyHistoryView = ({
   }
 
   const $historySection = createNode('section');
-  $historySection.classList = 'monthly-history';
+  $historySection.className = 'monthly-history';
   $historySection.innerHTML = monthlyInfoTemplate({
     totalCount,
     totalIncome,
@@ -23,7 +23,7 @@ export const monthlyHistoryView = ({
   });
 
   const $dailyWrapper = createNode('div');
-  $dailyWrapper.classList = 'daily-wrapper';
+  $dailyWrapper.className = 'daily-wrapper';
 
   const sortedLatestDailyHistories = sortLatestDate({ dailyHistories });
 

@@ -1,5 +1,5 @@
 import {
-  CLASSLIST,
+  CLASSNAME,
   EXPENSE_TEXT,
   INCOME_TEXT,
   SELECTOR,
@@ -9,8 +9,8 @@ import { $ } from '../../utils.js';
 export const changeCategoryList = (target) => {
   const $categoryList = $(SELECTOR.categoryList);
   const $categoryDropdown = $(SELECTOR.categoryDropdown);
-  const $incomeCategory = makeCategoryNode(INCOME_TEXT, CLASSLIST.category);
-  const $expenseCategory = makeCategoryNode(EXPENSE_TEXT, CLASSLIST.category);
+  const $incomeCategory = makeCategoryNode(INCOME_TEXT, CLASSNAME.category);
+  const $expenseCategory = makeCategoryNode(EXPENSE_TEXT, CLASSNAME.category);
 
   const categoryTemplate = target.checked ? $incomeCategory : $expenseCategory;
   $categoryDropdown.replaceChild(categoryTemplate, $categoryList);
@@ -18,11 +18,11 @@ export const changeCategoryList = (target) => {
 
 const makeCategoryNode = (optionList, className) => {
   const $category = document.createElement('ul');
-  $category.classList = className;
+  $category.className = className;
 
   optionList.forEach((text) => {
     const $li = document.createElement('li');
-    $li.classList = 'input-option';
+    $li.className = 'input-option';
 
     const $span = document.createElement('span');
     $span.textContent = text;
