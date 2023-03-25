@@ -1,4 +1,4 @@
-import { getModalTemplate } from '../../Components/modal.js';
+import { getModalTemplate, makeDimCover } from '../../Components/modal.js';
 import { storage } from '../../Storage.js';
 import { CLASSNAME, FILE_PATH, MONEY_TYPE } from '../../constant.js';
 import { $, createNode, formatMoney } from '../../utils.js';
@@ -91,13 +91,11 @@ const alertListDelete = (target) => {
   const modalTemplate = getModalTemplate(
     '아래 내역을 삭제하시겠습니까?',
     modalBodyDetail,
-    {
-      buttonKind: 'delete',
-      buttonText: '삭제',
-    }
+    'modal-btn__delete'
   );
   const $main = $('main');
   $main.insertAdjacentHTML('beforeend', modalTemplate);
+  makeDimCover();
 };
 
 const makeModalDetail = ({ isIncomeMoney, category, memo, payment, money }) => {

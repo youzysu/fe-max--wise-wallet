@@ -9,6 +9,7 @@
     0px 4px 4px rgba(82, 77, 144, 0.1);
   border-radius: 16px;
   border: 1px solid var(--color-primary);
+  z-index: 1;
 }
 
 .modal-inner {
@@ -36,15 +37,15 @@
   margin-top: 32px;
 }
 
-.modal-btn[data-kind='cancel'] {
+.modal-btn__cancel {
   color: var(--color-primary);
 }
 
-.modal-btn[data-kind='register'] {
+.modal-btn__register {
   color: var(--color-secondary-yellow);
 }
 
-.modal-btn[data-kind='delete'] {
+.modal-btn__delete {
   color: var(--color-secondary-red);
 }
 
@@ -52,4 +53,13 @@
   display: flex;
   flex-direction: column;
   color: var(--color-primary);
+}
+
+.dim-cover {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
 }

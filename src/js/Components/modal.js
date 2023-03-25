@@ -1,8 +1,13 @@
+import { $, createNode } from '../utils.js';
+
 export const getModalTemplate = (
   headerText,
   bodyHtmlText,
-  { buttonKind, buttonText }
+  modalBtnClassName
 ) => {
+  const modalBtnText =
+    modalBtnClassName === 'modal-btn__register' ? '등록' : '삭제';
+
   return `
 <div class="modal" tabindex="-1" role="dialog">
   <div class="modal-inner">
@@ -17,16 +22,22 @@ export const getModalTemplate = (
     <div class="modal-footer">
       <button
         type="button"
-        class="bold-large modal-btn"
+        class="bold-large modal-btn__cancel"
         data-kind="cancel"
         data-dismiss="modal">
         취소
       </button>
-      <button type="button" class="bold-large modal-btn" data-kind="${buttonKind}">${buttonText}</button>
+      <button type="button" class="bold-large ${modalBtnClassName}">${modalBtnText}</button>
     </div>
   </div>
 </div>
 `;
+};
+
+export const makeDimCover = () => {
+  const dimCover = createNode('div', 'dim-cover');
+  const $body = $('body');
+  $body.appendChild(dimCover);
 };
 
 const modalInputTemplate = (placeholderMessage) => {
