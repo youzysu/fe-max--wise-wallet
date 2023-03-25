@@ -1,5 +1,5 @@
-import { SELECTOR } from '../../constant.js';
-import { $ } from '../../utils.js';
+import { SELECTOR } from '../../../constant.js';
+import { $ } from '../../../utils.js';
 
 export const checkSubmitButtonActivation = () => {
   const $inputBarForm = $(SELECTOR.inputBarForm);

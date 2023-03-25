@@ -1,4 +1,4 @@
-import { CATEGORY_OPTIONS, INCOME_TEXT, REGEX } from './constant.js';
+import { CATEGORY_OPTIONS, INCOME_TEXT, REGEX } from '../../constant.js';
 
 export class DailyItem {
   constructor({ date, moneyValue, memoValue, payment, category }) {

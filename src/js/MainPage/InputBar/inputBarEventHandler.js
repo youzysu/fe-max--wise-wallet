@@ -1,5 +1,5 @@
-import { EVENT, REGEX, SELECTOR } from '../constant.js';
-import { $, $all, toggleActiveClass } from '../utils.js';
+import { EVENT, REGEX, SELECTOR } from '../../constant.js';
+import { $, $all, toggleActiveClass } from '../../utils.js';
 import { changeCategoryList } from './event/changeCategoryList.js';
 import { checkSubmitButtonActivation } from './event/checkSubmitButtonActivation.js';
 import { formSubmitHandler } from './event/formSubmitHandler.js';

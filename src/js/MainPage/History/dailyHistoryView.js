@@ -14,6 +14,7 @@ export const dailyHistoryView = (dailyHistory) => {
 
   const $dailyHistory = createNode('div', 'daily-history');
   const $dailyHistoryList = createNode('ul', 'daily-history__list');
+  $dailyHistoryList.dataset.date = date;
 
   const isTotalIncomeChecked = $('#total-income').checked;
   const isTotalExpenseChecked = $('#total-expense').checked;

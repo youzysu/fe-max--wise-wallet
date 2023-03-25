@@ -1,4 +1,8 @@
-import { DailyHistory, DailyItem, MonthlyHistory } from './History.js';
+import {
+  DailyHistory,
+  DailyItem,
+  MonthlyHistory,
+} from './MainPage/History/History.js';
 
 class Storage {
   constructor() {
@@ -33,6 +37,12 @@ class Storage {
     localStorage.setItem('wiseWallet', JSON.stringify(this.monthlyHistories));
 
     return monthlyHistory;
+  }
+
+  getDailyItem(itemDate, itemId) {
+    const monthlyHistory = this.getMonthlyHistory(itemDate);
+    const dailyHistory = this.getDailyHistory(monthlyHistory, itemDate);
+    return dailyHistory.dailyItems[itemId];
   }
 
   getMonthlyHistory(date) {
@@ -79,7 +89,7 @@ class Storage {
 
   getMonthYearKey(date) {
     const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const month = date.getMonth() + 1;
     const monthYear = `${year}${month}`;
 
     return monthYear;

@@ -1,16 +1,13 @@
-import { headerEventHandler } from './Header/headerEventHandler.js';
-import { headerView } from './Header/headerView.js';
-import { inputBarEventHandler } from './InputBar/inputBarEventHandler.js';
-import { inputBarView } from './InputBar/inputBarView.js';
-import { monthlyHistoryView } from './MainPage/View/monthlyHistoryView.js';
+import { header } from './Components/header.js';
+import { monthlyHistoryView } from './MainPage/History/monthlyHistoryView.js';
+import { inputBarEventHandler } from './MainPage/InputBar/inputBarEventHandler.js';
+import { inputBarView } from './MainPage/InputBar/inputBarView.js';
 import { storage } from './Storage.js';
 
 export function App() {
   const currentDate = new Date();
 
-  headerView(currentDate);
-  headerEventHandler();
-
+  header(currentDate);
   mainPage(currentDate);
 }
 

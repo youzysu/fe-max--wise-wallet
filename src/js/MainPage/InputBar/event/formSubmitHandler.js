@@ -1,7 +1,7 @@
-import { changeHeaderMonthYear } from '../../Header/HeaderEventHandler.js';
-import { monthlyHistoryView } from '../../MainPage/View/monthlyHistoryView.js';
-import { storage } from '../../Storage.js';
-import { getDateFormat } from '../../utils.js';
+import { changeHeaderMonthYear } from '../../../Components/header.js';
+import { storage } from '../../../Storage.js';
+import { getDateFormat } from '../../../utils.js';
+import { monthlyHistoryView } from '../../History/monthlyHistoryView.js';
 
 export const formSubmitHandler = (event) => {
   event.preventDefault();

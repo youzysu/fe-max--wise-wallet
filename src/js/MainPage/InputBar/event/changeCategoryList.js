@@ -3,8 +3,8 @@ import {
   EXPENSE_TEXT,
   INCOME_TEXT,
   SELECTOR,
-} from '../../constant.js';
-import { $, createNode } from '../../utils.js';
+} from '../../../constant.js';
+import { $, createNode } from '../../../utils.js';
 
 export const changeCategoryList = (target) => {
   const $categoryList = $(SELECTOR.categoryList);

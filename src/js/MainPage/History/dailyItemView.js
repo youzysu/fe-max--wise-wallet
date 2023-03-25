@@ -1,8 +1,11 @@
+import { getModalTemplate } from '../../Components/modal.js';
+import { storage } from '../../Storage.js';
 import { CLASSNAME, FILE_PATH, MONEY_TYPE } from '../../constant.js';
-import { createNode, formatMoney } from '../../utils.js';
+import { $, createNode, formatMoney } from '../../utils.js';
 
 export const dailyItemView = (dailyItem) => {
-  const { uuid, category, memo, payment, money, isIncomeMoney } = dailyItem;
+  const { uuid, date, category, memo, payment, money, isIncomeMoney } =
+    dailyItem;
 
   const $dailyItemList = createNode('li', CLASSNAME.dailyItem);
   $dailyItemList.dataset.itemId = uuid;
@@ -62,6 +65,9 @@ const makeDailyItemMoney = (money, isIncomeMoney) => {
 const makeDailyItemDeleteBtn = () => {
   const $dailyItemDeleteBtn = createNode('button', 'daily-item__delete-btn');
   $dailyItemDeleteBtn.setAttribute('type', 'button');
+  $dailyItemDeleteBtn.addEventListener('click', ({ target }) =>
+    alertListDelete(target)
+  );
 
   const $buttonImage = createNode('img');
   $buttonImage.setAttribute('src', FILE_PATH.dailyItemDeleteBtn);
@@ -70,4 +76,37 @@ const makeDailyItemDeleteBtn = () => {
   $dailyItemDeleteBtn.appendChild($buttonImage);
 
   return $dailyItemDeleteBtn;
+};
+
+const alertListDelete = (target) => {
+  const currentItem = target.closest('.daily-item');
+  const currentDate = currentItem.closest('.daily-history__list').dataset.date;
+  const currentItemUUID = currentItem.dataset.itemId;
+
+  const targetItem = storage.getDailyItem(
+    new Date(currentDate),
+    currentItemUUID
+  );
+  const modalBodyDetail = makeModalDetail(targetItem);
+  const modalTemplate = getModalTemplate(
+    '아래 내역을 삭제하시겠습니까?',
+    modalBodyDetail,
+    {
+      buttonKind: 'delete',
+      buttonText: '삭제',
+    }
+  );
+  const $main = $('main');
+  $main.insertAdjacentHTML('beforeend', modalTemplate);
+};
+
+const makeModalDetail = ({ isIncomeMoney, category, memo, payment, money }) => {
+  return `
+<p class="bold-medium modal-body__detail">
+  <span>카테고리: ${isIncomeMoney ? '수입' : '지출'}/${category}</span>
+  <span>내용: ${memo}</span>
+  <span>결제수단: ${payment}</span>
+  <span>금액: ${formatMoney(money)}</span>
+</p>
+  `;
 };

@@ -1,5 +1,5 @@
-import { SELECTOR } from '../constant.js';
-import { $, getDateFormat } from '../utils.js';
+import { SELECTOR } from '../../constant.js';
+import { $, getDateFormat } from '../../utils.js';
 
 export function inputBarView(currentDate) {
   render();
