@@ -33,7 +33,32 @@ class Storage {
     const monthlyHistory = this.getMonthlyHistory(itemDate);
     const dailyHistory = this.getDailyHistory(monthlyHistory, itemDate);
 
-    this.updateStorage(monthlyHistory, dailyHistory, dailyItem);
+    this.addDailyItem(monthlyHistory, dailyHistory, dailyItem);
+    localStorage.setItem('wiseWallet', JSON.stringify(this.monthlyHistories));
+
+    return monthlyHistory;
+  }
+
+  deleteDailyItem({ date, uuid, isIncomeMoney, money }) {
+    const itemDate = new Date(date);
+    const monthlyHistory = this.getMonthlyHistory(itemDate);
+    const dailyHistory = this.getDailyHistory(monthlyHistory, itemDate);
+
+    delete monthlyHistory.dailyHistories[itemDate].dailyItems[uuid];
+    monthlyHistory.totalCount -= 1;
+
+    if (isIncomeMoney) {
+      delete dailyHistory.incomeDailyItems[uuid];
+      dailyHistory.incomeAmount -= money;
+      monthlyHistory.totalIncome -= money;
+      localStorage.setItem('wiseWallet', JSON.stringify(this.monthlyHistories));
+
+      return monthlyHistory;
+    }
+
+    delete dailyHistory.expenseDailyItems[uuid];
+    dailyHistory.expenseAmount -= money;
+    monthlyHistory.totalExpense -= money;
     localStorage.setItem('wiseWallet', JSON.stringify(this.monthlyHistories));
 
     return monthlyHistory;
@@ -70,7 +95,7 @@ class Storage {
     return dailyHistory;
   }
 
-  updateStorage(monthlyHistory, dailyHistory, newDailyItem) {
+  addDailyItem(monthlyHistory, dailyHistory, newDailyItem) {
     dailyHistory.dailyItems[newDailyItem.uuid] = newDailyItem;
     monthlyHistory.totalCount += 1;
 

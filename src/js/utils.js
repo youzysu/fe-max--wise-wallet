@@ -23,3 +23,9 @@ export const createNode = (tagName, className) => {
 };
 
 export const formatMoney = (money) => Number(money).toLocaleString('ko-KR');
+
+export const makeDimCover = () => {
+  const dimCover = createNode('div', 'dim-cover');
+  const $body = $('body');
+  $body.appendChild(dimCover);
+};
