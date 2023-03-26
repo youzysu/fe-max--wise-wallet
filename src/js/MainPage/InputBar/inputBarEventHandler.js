@@ -48,27 +48,35 @@ const formSubmitHandler = (event) => {
     fullDate.value.slice(6),
   ];
 
-  const dailyItemData = {
+  const updatedItem = {
     uuid: currentItemKey.value,
     date: new Date(`${year}-${month}-${date}`),
-    isIncomeMoney: moneyType.checked ? true : false,
-    moneyValue: money.value,
-    memoValue: memo.value,
+    money: Number(money.value.replaceAll(',', '')),
+    memo: memo.value,
     payment: payment.value,
     category: category.value,
+    isIncomeMoney: moneyType.checked ? true : false,
   };
 
   if (!currentItemKey.value) {
-    saveDailyItem(dailyItemData);
+    saveDailyItem(updatedItem);
     resetInputBar();
     return;
   }
 
-  const beforeItem = getSelectedItem();
-  if (isModified(dailyItemData, beforeItem)) {
-    storage.modifyDailyItem(dailyItemData, beforeItem);
+  const stoargedItem = getSelectedItem();
+  if (isModified(updatedItem, stoargedItem)) {
+    updateDailyitem(updatedItem, stoargedItem);
     resetInputBar();
   }
+};
+
+const updateDailyitem = (updatedItem, stoargedItem) => {
+  const monthlyHistory = storage.modifyDailyItem(updatedItem, stoargedItem);
+  monthlyHistoryView(monthlyHistory);
+
+  const { year, monthNumber, monthChar } = getDateFormat(updatedItem.date);
+  changeHeaderMonthYear({ year, monthNumber, monthChar });
 };
 
 const getSelectedItem = () => {
@@ -101,7 +109,7 @@ const checkSubmitButtonActivation = () => {
     fullDate.value.slice(4, 6),
     fullDate.value.slice(6),
   ];
-  const afterItem = {
+  const updatedItem = {
     uuid: currentItemKey.value,
     date: new Date(`${year}-${month}-${date}`).toISOString(),
     isIncomeMoney: moneyType.checked ? true : false,
@@ -119,8 +127,8 @@ const checkSubmitButtonActivation = () => {
   }
 
   if (currentItemKey.value) {
-    const beforeItem = getSelectedItem();
-    isModified(beforeItem, afterItem)
+    const storagedItem = getSelectedItem();
+    isModified(updatedItem, storagedItem)
       ? ($submitButton.disabled = false)
       : ($submitButton.disabled = true);
   }
@@ -137,14 +145,14 @@ const isModified = (before, after) => {
 };
 
 const isAllInputFilled = ({ fullDate, money, memo, payment, category }) => {
-  const userInputValues = [
+  const updatedItemValues = [
     fullDate.value,
     money.value,
     memo.value,
     payment.value,
     category.value,
   ];
-  return userInputValues.every((val) => !!val === true);
+  return updatedItemValues.every((val) => !!val === true);
 };
 
 export const resetInputBar = () => {

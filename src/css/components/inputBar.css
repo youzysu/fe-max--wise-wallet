@@ -158,7 +158,6 @@
   background-image: url('/src/assets/icon/button-disabled.svg');
 }
 
-#currentItemKey,
-#currentItemDate {
+#currentItemKey {
   display: none;
 }

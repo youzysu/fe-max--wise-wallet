@@ -39,31 +39,14 @@ class Storage {
     return monthlyHistory;
   }
 
-  modifyDailyItem(dailyItemData, beforeItem) {
-    console.log(dailyItemData);
-    console.log(beforeItem);
-  }
+  modifyDailyItem(updatedItem, stoargedItem) {
+    this.deleteDailyItem(stoargedItem);
 
-  deleteDailyItem({ date, uuid, isIncomeMoney, money }) {
-    const itemDate = new Date(date);
+    const itemDate = updatedItem.date;
     const monthlyHistory = this.getMonthlyHistory(itemDate);
     const dailyHistory = this.getDailyHistory(monthlyHistory, itemDate);
 
-    delete monthlyHistory.dailyHistories[itemDate].dailyItems[uuid];
-    monthlyHistory.totalCount -= 1;
-
-    if (isIncomeMoney) {
-      delete dailyHistory.incomeDailyItems[uuid];
-      dailyHistory.incomeAmount -= money;
-      monthlyHistory.totalIncome -= money;
-      localStorage.setItem('wiseWallet', JSON.stringify(this.monthlyHistories));
-
-      return monthlyHistory;
-    }
-
-    delete dailyHistory.expenseDailyItems[uuid];
-    dailyHistory.expenseAmount -= money;
-    monthlyHistory.totalExpense -= money;
+    this.addDailyItem(monthlyHistory, dailyHistory, updatedItem);
     localStorage.setItem('wiseWallet', JSON.stringify(this.monthlyHistories));
 
     return monthlyHistory;
@@ -115,6 +98,31 @@ class Storage {
     dailyHistory.expenseAmount += newDailyItem.money;
     monthlyHistory.totalExpense += newDailyItem.money;
     return;
+  }
+
+  deleteDailyItem({ date, uuid, isIncomeMoney, money }) {
+    const itemDate = new Date(date);
+    const monthlyHistory = this.getMonthlyHistory(itemDate);
+    const dailyHistory = this.getDailyHistory(monthlyHistory, itemDate);
+
+    delete monthlyHistory.dailyHistories[itemDate].dailyItems[uuid];
+    monthlyHistory.totalCount -= 1;
+
+    if (isIncomeMoney) {
+      delete dailyHistory.incomeDailyItems[uuid];
+      dailyHistory.incomeAmount -= money;
+      monthlyHistory.totalIncome -= money;
+      localStorage.setItem('wiseWallet', JSON.stringify(this.monthlyHistories));
+
+      return monthlyHistory;
+    }
+
+    delete dailyHistory.expenseDailyItems[uuid];
+    dailyHistory.expenseAmount -= money;
+    monthlyHistory.totalExpense -= money;
+    localStorage.setItem('wiseWallet', JSON.stringify(this.monthlyHistories));
+
+    return monthlyHistory;
   }
 
   getMonthYearKey(date) {
