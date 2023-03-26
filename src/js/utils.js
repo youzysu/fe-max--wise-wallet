@@ -16,6 +16,16 @@ export const getDateFormat = (currentDate) => {
 export const toggleActiveClass = (nodeName) =>
   nodeName.classList.toggle('active');
 
-export const createNode = (tagName) => document.createElement(tagName);
+export const createNode = (tagName, className) => {
+  const element = document.createElement(tagName);
+  element.className = className;
+  return element;
+};
 
 export const formatMoney = (money) => Number(money).toLocaleString('ko-KR');
+
+export const makeDimCover = () => {
+  const dimCover = createNode('div', 'dim-cover');
+  const $body = $('body');
+  $body.appendChild(dimCover);
+};

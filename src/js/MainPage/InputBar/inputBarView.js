@@ -1,9 +1,9 @@
-import { SELECTOR } from '../constant.js';
-import { $, getDateFormat } from '../utils.js';
+import { SELECTOR } from '../../constant.js';
+import { $, getDateFormat } from '../../utils.js';
 
-export function inputBarView() {
+export function inputBarView(currentDate) {
   render();
-  initDateInput();
+  initDateInput(currentDate);
 }
 
 const render = () => {
@@ -12,8 +12,7 @@ const render = () => {
   $main.innerHTML = inputBarSection;
 };
 
-const initDateInput = () => {
-  const currentDate = new Date();
+export const initDateInput = (currentDate) => {
   const { year, monthNumber, date } = getDateFormat(currentDate);
   const formatMonth = monthNumber.padStart(2, '0');
   const formatDate = date.padStart(2, '0');
@@ -119,7 +118,12 @@ const template = () => {
               </ul>
             </div>
           </div>
-
+          <input
+            id="currentItemKey"
+            type="text"
+            name="currentItemKey"
+            readonly
+              />
           <button
             class="input-bar__component"
             id="submit-btn"

@@ -1,30 +1,27 @@
 import {
-  CLASSLIST,
+  CLASSNAME,
   EXPENSE_TEXT,
   INCOME_TEXT,
   SELECTOR,
-} from '../../constant.js';
-import { $ } from '../../utils.js';
+} from '../../../constant.js';
+import { $, createNode } from '../../../utils.js';
 
-export const changeCategoryList = (target) => {
+export const changeCategoryList = ({ target }) => {
   const $categoryList = $(SELECTOR.categoryList);
   const $categoryDropdown = $(SELECTOR.categoryDropdown);
-  const $incomeCategory = makeCategoryNode(INCOME_TEXT, CLASSLIST.category);
-  const $expenseCategory = makeCategoryNode(EXPENSE_TEXT, CLASSLIST.category);
+  const $incomeCategory = makeCategoryNode(INCOME_TEXT, CLASSNAME.category);
+  const $expenseCategory = makeCategoryNode(EXPENSE_TEXT, CLASSNAME.category);
 
   const categoryTemplate = target.checked ? $incomeCategory : $expenseCategory;
   $categoryDropdown.replaceChild(categoryTemplate, $categoryList);
 };
 
 const makeCategoryNode = (optionList, className) => {
-  const $category = document.createElement('ul');
-  $category.classList = className;
+  const $category = createNode('ul', className);
 
   optionList.forEach((text) => {
-    const $li = document.createElement('li');
-    $li.classList = 'input-option';
-
-    const $span = document.createElement('span');
+    const $li = createNode('li', 'input-option');
+    const $span = createNode('span');
     $span.textContent = text;
 
     $li.appendChild($span);

@@ -1,13 +1,5 @@
 export const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
 
-export const TAG_NAME = {
-  ul: 'ul',
-  li: 'li',
-  div: 'div',
-  span: 'span',
-  button: 'button',
-};
-
 export const MONEY_TYPE = {
   income: 'income',
   expense: 'expense',
@@ -17,7 +9,7 @@ export const FILE_PATH = {
   dailyItemDeleteBtn: './src/assets/icon/delete-item-icon.svg',
 };
 
-export const CLASSLIST = {
+export const CLASSNAME = {
   category: 'category-list body-small',
   dailyItem: 'daily-item',
   dailyItemCategory: 'daily-item__category bold-medium',
