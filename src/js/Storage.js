@@ -39,6 +39,11 @@ class Storage {
     return monthlyHistory;
   }
 
+  modifyDailyItem(dailyItemData, beforeItem) {
+    console.log(dailyItemData);
+    console.log(beforeItem);
+  }
+
   deleteDailyItem({ date, uuid, isIncomeMoney, money }) {
     const itemDate = new Date(date);
     const monthlyHistory = this.getMonthlyHistory(itemDate);

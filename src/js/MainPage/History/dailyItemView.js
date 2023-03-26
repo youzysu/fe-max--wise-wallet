@@ -22,8 +22,35 @@ export const dailyItemView = (dailyItem) => {
     $dailyItemMoney
   );
 
-  $dailyItemList.addEventListener('click', updateItem);
+  $dailyItemList.addEventListener('click', fillInputBarCurrentItem);
   return $dailyItemList;
+};
+
+const fillInputBarCurrentItem = ({ target }) => {
+  if (target.matches('.daily-item__delete-btn')) {
+    return;
+  }
+  const { targetItem, currentItem } = getDailyItem({ target });
+  currentItem.classList.add('selected-item');
+  fillInputBarDetail(targetItem);
+};
+
+const resetInputBarDetail = () => {};
+
+const fillInputBarDetail = (targetItem) => {
+  const { date, money, memo, payment, category, isIncomeMoney } = targetItem;
+  const $inputBarForm = $('.input-bar__form', $('main'));
+  const formattedDate = new Date(date)
+    .toISOString()
+    .slice(0, 10)
+    .replace(/-/g, '');
+  $inputBarForm.elements.fullDate.value = formattedDate;
+  $inputBarForm.elements.money.value = formatMoney(money);
+  $inputBarForm.elements.memo.value = memo;
+  $inputBarForm.elements.payment.value = payment;
+  $inputBarForm.elements.category.value = category;
+  $inputBarForm.elements.moneyType.checked = isIncomeMoney ? true : false;
+  $inputBarForm.elements.currentItemKey.value = targetItem.uuid;
 };
 
 const makeDailyItemCategory = (category) => {
@@ -67,11 +94,11 @@ const makeDailyItemMoney = (money, isIncomeMoney) => {
 const makeDailyItemDeleteBtn = () => {
   const $dailyItemDeleteBtn = createNode('button', 'daily-item__delete-btn');
   $dailyItemDeleteBtn.setAttribute('type', 'button');
-  $dailyItemDeleteBtn.addEventListener('click', alertDeleteItem);
 
-  const $buttonImage = createNode('img');
+  const $buttonImage = createNode('img', 'daily-item__delete-btn');
   $buttonImage.setAttribute('src', FILE_PATH.dailyItemDeleteBtn);
   $buttonImage.setAttribute('alt', 'delete item button');
+  $buttonImage.addEventListener('click', alertDeleteItem);
 
   $dailyItemDeleteBtn.appendChild($buttonImage);
 
@@ -79,14 +106,7 @@ const makeDailyItemDeleteBtn = () => {
 };
 
 const alertDeleteItem = ({ target }) => {
-  const currentItem = target.closest('.daily-item');
-  const currentDate = currentItem.closest('.daily-history__list').dataset.date;
-  const currentItemUUID = currentItem.dataset.itemId;
-
-  const targetItem = storage.getDailyItem(
-    new Date(currentDate),
-    currentItemUUID
-  );
+  const { targetItem } = getDailyItem({ target });
   const modalElement = new Modal(
     '아래 내역을 삭제하시겠습니까?',
     targetItem,
@@ -97,4 +117,28 @@ const alertDeleteItem = ({ target }) => {
   makeDimCover();
 };
 
-const updateItem = ({ target }) => {};
+const getDailyItem = ({ target }) => {
+  const currentItem = target.closest('.daily-item');
+  const currentDate = currentItem.closest('.daily-history__list').dataset.date;
+  const currentItemUUID = currentItem.dataset.itemId;
+
+  const targetItem = storage.getDailyItem(
+    new Date(currentDate),
+    currentItemUUID
+  );
+
+  return { targetItem, currentItem };
+};
+
+const getSelectedItem = () => {
+  const selectedItem = $('.selected-item');
+  const selectedItemDate = selectedItem.closest('.daily-history__list').dataset
+    .date;
+  const selectedItemKey = selectedItem.dataset.itemId;
+
+  const storagedItem = storage.getDailyItem(
+    new Date(selectedItemDate),
+    selectedItemKey
+  );
+  return storagedItem;
+};

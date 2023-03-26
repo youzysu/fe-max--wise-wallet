@@ -12,7 +12,7 @@ const render = () => {
   $main.innerHTML = inputBarSection;
 };
 
-const initDateInput = (currentDate) => {
+export const initDateInput = (currentDate) => {
   const { year, monthNumber, date } = getDateFormat(currentDate);
   const formatMonth = monthNumber.padStart(2, '0');
   const formatDate = date.padStart(2, '0');
@@ -118,7 +118,12 @@ const template = () => {
               </ul>
             </div>
           </div>
-
+          <input
+            id="currentItemKey"
+            type="text"
+            name="currentItemKey"
+            readonly
+              />
           <button
             class="input-bar__component"
             id="submit-btn"

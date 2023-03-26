@@ -159,6 +159,7 @@
   display: initial;
 }
 
-.daily-item:hover {
+.daily-item:hover,
+.selected-item {
   background-color: var(--color-white);
 }
