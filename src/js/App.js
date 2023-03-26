@@ -6,8 +6,9 @@ import { storage } from './Storage.js';
 
 export function App() {
   const currentDate = new Date();
-
   header(currentDate);
+
+  // TODO: Route에 따라 페이지 렌더링하기
   mainPage(currentDate);
 }
 

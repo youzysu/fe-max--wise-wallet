@@ -91,7 +91,6 @@ const template = () => {
                       alt="delete button" />
                   </button>
                 </li>
-                <li class="input-option"><span>추가하기</span></li>
               </ul>
             </div>
           </div>

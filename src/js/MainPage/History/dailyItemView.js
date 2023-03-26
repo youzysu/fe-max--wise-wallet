@@ -35,8 +35,6 @@ const fillInputBarCurrentItem = ({ target }) => {
   fillInputBarDetail(targetItem);
 };
 
-const resetInputBarDetail = () => {};
-
 const fillInputBarDetail = (targetItem) => {
   const { date, money, memo, payment, category, isIncomeMoney } = targetItem;
   const $inputBarForm = $('.input-bar__form', $('main'));
@@ -51,6 +49,17 @@ const fillInputBarDetail = (targetItem) => {
   $inputBarForm.elements.category.value = category;
   $inputBarForm.elements.moneyType.checked = isIncomeMoney ? true : false;
   $inputBarForm.elements.currentItemKey.value = targetItem.uuid;
+};
+
+// TODO: 선택된 수입지출 내역이 있는 경우 입력바가 아닌 영역 클릭 시 리셋하기
+const resetInputBarUpdate = ({ target }) => {
+  const selectedItem = $('.selected-item', $('.monthly-history'));
+  if (selectedItem) {
+    if (!target.matches('.input-bar__form')) {
+      resetInputBar();
+      selectedItem.classList.remove('.selected-item');
+    }
+  }
 };
 
 const makeDailyItemCategory = (category) => {
